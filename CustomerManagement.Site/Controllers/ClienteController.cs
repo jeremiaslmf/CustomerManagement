@@ -37,7 +37,7 @@ namespace CustomerManagement.WebApi.Controllers
         [Route("{Id}")]
         public IActionResult ObterPorId([FromRoute] ClienteDTO.ObterPorId dto)
         {
-            return Ok(_clienteService.ObterPorId(dto.Id));
+            return Ok(_clienteService.GetById(dto.Id));
         }
     }
 }

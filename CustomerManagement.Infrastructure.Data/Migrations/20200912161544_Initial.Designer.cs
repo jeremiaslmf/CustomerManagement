@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomerManagement.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(CMContext))]
-    [Migration("20200912055403_AutoGenerateId")]
-    partial class AutoGenerateId
+    [Migration("20200912161544_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

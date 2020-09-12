@@ -7,6 +7,6 @@ namespace CustomerManagement.Application.Interfaces
     {
         bool Gravar(ClienteDTO.Gravar dto);
         void Exlcuir(ClienteDTO.Excluir dto);
-        ClienteDTO.Retorno ObterPorId(Guid id);
+        ClienteDTO.Retorno GetById(Guid id);
     }
 }

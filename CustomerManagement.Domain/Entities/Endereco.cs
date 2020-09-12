@@ -6,10 +6,11 @@ namespace CustomerManagement.Domain.Entities
 {
     public class Endereco : Entity<Endereco>
     {
-        public Endereco(string logradouro, string descricaoLogradouro, string numero, string complemento,
-            string bairro, string cep, string cidade, string estado)
+        public Endereco(Guid clienteId, string logradouro, string descricaoLogradouro, string numero, string complemento,
+            string bairro, string cep, string cidade, string ufEstado)
         {
             this.CreateGuid();
+            ClienteId = clienteId;
             Logradouro = logradouro;
             DescricaoEndereco = descricaoLogradouro;
             Numero = numero;
@@ -17,7 +18,7 @@ namespace CustomerManagement.Domain.Entities
             Bairro = bairro;
             CEP = cep;
             Cidade = cidade;
-            UfEstado = estado;
+            UfEstado = ufEstado;
         }
 
         protected Endereco() { }

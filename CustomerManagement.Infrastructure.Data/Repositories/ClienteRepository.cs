@@ -1,6 +1,7 @@
 ﻿using CustomerManagement.Domain.Interfaces;
 using CustomerManagement.Domain.Entities;
 using CustomerManagement.Infrastructure.Data.Context;
+using System.Configuration;
 
 namespace CustomerManagement.Infrastructure.Data.Repositories
 {

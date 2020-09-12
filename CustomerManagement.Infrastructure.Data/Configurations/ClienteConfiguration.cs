@@ -43,10 +43,6 @@ namespace CustomerManagement.Infrastructure.Data.Mappings
             b.HasIndex(c => c.Telefone)
                 .HasName("idx_cliente_telefone");
 
-            b.HasMany(c => c.Enderecos)
-                .WithOne(c => c.Cliente)
-                .HasForeignKey(c => c.ClienteId);
-
             b.Ignore(e => e.ValidationResult);
             b.Ignore(e => e.CascadeMode);
         }

@@ -49,6 +49,10 @@ namespace CustomerManagement.Infrastructure.Data.Mappings
                 .HasMaxLength(2)
                 .IsRequired();
 
+            b.HasOne<Cliente>(c => c.Cliente)
+                .WithMany(e => e.Enderecos)
+                .HasForeignKey(c => c.ClienteId);
+
             b.Ignore(e => e.ValidationResult);
             b.Ignore(e => e.CascadeMode);
         }

@@ -1,24 +1,19 @@
 ﻿using CustomerManagement.Domain.Entities;
-using CustomerManagement.Domain.Enums;
 using CustomerManagement.Infrastructure.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Configuration;
-using System.IO;
 
 namespace CustomerManagement.Infrastructure.Data.Context
 {
     public class CMContext : DbContext
     {
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
 
-        //public CMContext(DbContextOptions options) : base(options)
-        //{
-        //    Database.Migrate();
-        //}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=localhost;database=CustomerManagement;user=root;password=678150400");
+            optionsBuilder
+                .UseMySQL("server=localhost;database=CustomerManagement;user=root;password=678150400");
+                //.UseLazyLoadingProxies()
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
