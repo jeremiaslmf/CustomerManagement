@@ -4,8 +4,15 @@
     <div class="row">
         <div class="col-md-4 multi-horizontal" data-for="nome">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Nome Completo</label>
-                <input type="text" class="form-control" name="nome" data-form-field="Name" required="">
+                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Nome</label>
+                <input type="text" class="form-control" name="nome" [(ngModel)]="cliente.sobreNome" required="">
+            </div>
+        </div>
+
+        <div class="col-md-4 multi-horizontal" data-for="sobrenome">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Sobre nome</label>
+                <input type="text" class="form-control" name="sobrenome" [(ngModel)]="cliente.sobreNome" required="">
             </div>
         </div>
 

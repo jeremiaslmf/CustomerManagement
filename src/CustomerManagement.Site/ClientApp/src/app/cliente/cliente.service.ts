@@ -22,7 +22,7 @@ export class ClienteService {
     this.http.post(this.UrlService + "api/cliente/gravar", cliente)
   }
 
-  obterPorIdCliente(id : string) : Observable<Cliente> {
+  obterPorClienteId(id : string) : Observable<Cliente> {
     return this.http.get<Cliente>(this.UrlService + "api/cliente/" + id);
   }
 

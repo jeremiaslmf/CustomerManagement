@@ -14,8 +14,8 @@ export class CadastroClienteComponent implements OnInit {
   public cliente: Cliente = new Cliente;
 
   ngOnInit() : void {
-    const idCliente = this.route.snapshot.paramMap.get('id');
-    this.service.obterPorIdCliente(idCliente)
+    const clienteId = this.route.snapshot.paramMap.get('id');
+    this.service.obterPorClienteId(clienteId)
     .subscribe(
       retorno => {
         this.cliente = retorno;
