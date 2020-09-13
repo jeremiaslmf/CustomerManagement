@@ -39,5 +39,12 @@ namespace CustomerManagement.WebApi.Controllers
         {
             return Ok(_clienteService.GetById(dto.Id));
         }
+
+        [HttpGet]
+        [Route("obterTodos")]
+        public IActionResult ObterTodos()
+        {
+            return Ok(_clienteService.GetAll());
+        }
     }
 }

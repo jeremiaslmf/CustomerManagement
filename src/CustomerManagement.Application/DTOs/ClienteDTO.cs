@@ -8,9 +8,7 @@ namespace CustomerManagement.Application.DTOs
     {
         public class Gravar : ClienteModel { }
 
-        public class Excluir : ObterPorId
-        {
-        }
+        public class Excluir : ObterPorId { }
 
         public class ObterPorId
         {
@@ -19,6 +17,7 @@ namespace CustomerManagement.Application.DTOs
 
         public class Retorno
         {
+            public Guid Id { get; set; }
             public string Nome { get; set; }
             public string SobreNome { get; set; }
             public DateTime DataNascimento { get; set; }

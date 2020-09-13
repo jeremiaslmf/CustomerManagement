@@ -1,0 +1,70 @@
+{
+    "clientes" : [
+        {
+            "id": "3447a59e-6ae1-4e35-b1a3-0974d77a5630",
+            "nome": "Jeremias",
+            "sobreNome": "Lima dos Santos ",
+            "dataNascimento": "1993-01-01T00:00:00",
+            "tipoSexo": "Outro",
+            "email": "jeremiaslmf@gmail.com",
+            "telefone": "44984062478",
+            "enderecos": [
+                {
+                    "clienteId": "3447a59e-6ae1-4e35-b1a3-0974d77a5630",
+                    "logradouro": "Rua",
+                    "descricaoEndereco": "Asa Branca",
+                    "numero": "291",
+                    "complemento": "CASA",
+                    "bairro": "Jd Asa Branca",
+                    "cep": "87206162",
+                    "cidade": "Cianorte",
+                    "ufEstado": "PR"
+                },
+                {
+                    "clienteId": "3447a59e-6ae1-4e35-b1a3-0974d77a5630",
+                    "logradouro": "Avenida",
+                    "descricaoEndereco": "Rebouças",
+                    "numero": "40",
+                    "complemento": "Edificio Tamisa, AP. 05",
+                    "bairro": "Centro",
+                    "cep": "8720000",
+                    "cidade": "Cianorte",
+                    "ufEstado": "PR"
+                },
+                {
+                    "clienteId": "3447a59e-6ae1-4e35-b1a3-0974d77a5630",
+                    "logradouro": "Avenida",
+                    "descricaoEndereco": "Rebouças",
+                    "numero": "40",
+                    "complemento": "Edificio Tamisa, AP. 05",
+                    "bairro": "Centro",
+                    "cep": "8720000",
+                    "cidade": "Cianorte",
+                    "ufEstado": "PR"
+                }
+            ]
+        },
+        {
+            "id": "7d7ad617-018c-46b1-9fb7-25ea37bd6e36",
+            "nome": "Carlos",
+            "sobreNome": "Oliver Limazin ",
+            "dataNascimento": "1990-05-01T00:00:00",
+            "tipoSexo": "Outro",
+            "email": "carlosoliverlima_@outlook.com",
+            "telefone": "11995772628",
+            "enderecos": [
+                {
+                    "clienteId": "7d7ad617-018c-46b1-9fb7-25ea37bd6e36",
+                    "logradouro": "Avenida",
+                    "descricaoEndereco": "Desembargador Amaral",
+                    "numero": "938",
+                    "complemento": "CASA",
+                    "bairro": "Centro",
+                    "cep": "64400970",
+                    "cidade": "Amarante",
+                    "ufEstado": "PI"
+                }
+            ]
+        }
+    ]    
+}    

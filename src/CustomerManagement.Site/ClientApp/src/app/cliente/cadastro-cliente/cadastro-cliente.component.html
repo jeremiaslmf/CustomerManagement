@@ -1,0 +1,92 @@
+<h2>Cadastro de Cliente</h2>
+
+<form #clienteForm="ngForm">
+    <div class="row">
+        <div class="col-md-4 multi-horizontal" data-for="nome">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Nome Completo</label>
+                <input type="text" class="form-control" name="nome" data-form-field="Name" required="">
+            </div>
+        </div>
+
+        <div class="col-md-4 multi-horizontal" data-for="dataNascimento">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Data Nascimento</label>
+                <input type="text" class="form-control" name="dataNascimento" data-form-field="" required="">
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="inputSexo">Sexo</label>
+            <select id="inputSexo" class="form-control">
+                <option selected></option>
+                <option>Masculino</option>
+                <option>Feminino</option>
+                <option>Outro</option>
+            </select>
+            </div>
+
+        <div class="col-md-4 multi-horizontal" data-for="email">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="email-form1-2w">E-mail</label>
+                <input type="email" class="form-control" name="email" data-form-field="Email" required="">
+            </div>
+        </div>
+        <div class="col-md-4 multi-horizontal" data-for="phone">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Telefone</label>
+                <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-2w">
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<form #enderecoForm="ngForm">
+    <div class="row row-sm-offset">
+        <div class="col-md-4 multi-horizontal" data-for="cep">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">CEP</label>
+                <input type="text" class="form-control" name="cep" data-form-field="Cep" required="">
+            </div>
+        </div>
+
+        <div class="col-md-4 multi-horizontal" data-for="logradouro">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Logradouro</label>
+                <input type="text" class="form-control" name="logradouro" data-form-field="Logradouro" required="">
+            </div>
+        </div>
+
+        <div class="col-md-4 multi-horizontal" data-for="endereco">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="email-form1-2w">Endereço</label>
+                <input type="email" class="form-control" name="endereco" data-form-field="Endereco" required=""
+                    id="email-form1-2w">
+            </div>
+        </div>
+        <div class="col-md-4 multi-horizontal" data-for="bairro">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Bairro</label>
+                <input type="tel" class="form-control" name="bairro" data-form-field="Bairro" required="">
+            </div>
+        </div>
+        <div class="col-md-4 multi-horizontal" data-for="numero">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Número</label>
+                <input type="tel" class="form-control" name="numero" data-form-field="Numero" id="phone-form1-2w">
+            </div>
+        </div>
+        <div class="col-md-4 multi-horizontal" data-for="complemento">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Complemento</label>
+                <input type="tel" class="form-control" name="complemento" data-form-field="Complemento" id="phone-form1-2w">
+            </div>
+        </div>
+    </div>
+
+    <span class="input-group-btn">
+        <button type="submit" class="btn btn-success" (click)="salvarCadastro()" [disabled]="!clienteForm.form.valid" >Salvar</button>
+        <button type="button" class="btn btn-warning" [routerLink]="['/lista-cliente']">Voltar</button>
+    </span>
+</form>

@@ -14,7 +14,9 @@ namespace CustomerManagement.Application.Mappings
             TinyMapper.Bind<ClienteDTO.Gravar, Cliente>();
             TinyMapper.Bind<Cliente, ClienteDTO.ObterPorId>();
             TinyMapper.Bind<Cliente, ClienteDTO.Retorno>();
-            
+            TinyMapper.Bind<List<ClienteDTO.Retorno>, List<Cliente>>();
+            TinyMapper.Bind<List<Cliente>, List<ClienteDTO.Retorno>>();
+
             TinyMapper.Bind<Endereco, EnderecoDTO.Retorno>();
             TinyMapper.Bind<EnderecoDTO.Retorno, Endereco>();
             TinyMapper.Bind<List<EnderecoDTO.Retorno>, List<Endereco>>();

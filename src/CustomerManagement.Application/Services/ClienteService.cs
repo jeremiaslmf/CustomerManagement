@@ -39,6 +39,12 @@ namespace CustomerManagement.Application.Services
             return TinyMapper.Map<ClienteDTO.Retorno>(cliente);
         }
 
+        public List<ClienteDTO.Retorno> GetAll()
+        {
+            var clientes = UnitOfWork.ClienteRepository.GetAll().ToList();
+            return TinyMapper.Map<List<ClienteDTO.Retorno>>(clientes);
+        }
+
         private Cliente GetCliente(Guid id)
             => UnitOfWork.ClienteRepository.GetById(id)
                 ?? throw new Exception("Cliente não encontrado!");
