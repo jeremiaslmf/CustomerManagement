@@ -22,7 +22,7 @@ namespace CustomerManagement.Infrastructure.Data.Repositories
 
         public virtual void Add(TEntity obj) => DbSet.Add(obj);
 
-        public void Update(TEntity obj) => DbSet.Update(obj); 
+        public void Update(TEntity obj) => DbSet.Update(obj);
 
         public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) 
             => DbSet.AsNoTracking().Where(predicate);

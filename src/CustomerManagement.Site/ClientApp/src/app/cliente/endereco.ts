@@ -1,11 +1,10 @@
 export class Endereco {
-    Id: string;
-    Logradouro: string;
-    DescricaoEndereco: string;
-    Numero: string;
-    Complemento: string;
-    Bairro: string;
-    CEP: string;
-    Cidade: string;
-    UfEstado: string;
+    id: string;
+    logradouro: string;
+    numero: string;
+    complemento: string;
+    bairro: string;
+    cep: string;
+    cidade: string;
+    ufEstado: string;
   }

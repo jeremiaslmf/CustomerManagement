@@ -5,7 +5,7 @@
         <div class="col-md-4 multi-horizontal" data-for="nome">
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Nome</label>
-                <input type="text" class="form-control" name="nome" [(ngModel)]="cliente.sobreNome" required="">
+                <input type="text" class="form-control" name="nome" [(ngModel)]="cliente.nome" required="">
             </div>
         </div>
 
@@ -19,81 +19,84 @@
         <div class="col-md-4 multi-horizontal" data-for="dataNascimento">
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Data Nascimento</label>
-                <input type="text" class="form-control" name="dataNascimento" data-form-field="" required="">
+                <input type="text" class="form-control" name="dataNascimento" [(ngModel)]="cliente.dataNascimento" required="">
             </div>
         </div>
 
         <div class="form-group col-md-4">
             <label for="inputSexo">Sexo</label>
-            <select id="inputSexo" class="form-control">
+            <select [(ngModel)]="sexo.selectedValue" class="form-control">
                 <option selected></option>
-                <option>Masculino</option>
-                <option>Feminino</option>
-                <option>Outro</option>
+                <option *ngFor="let s of sexo.tipos" [ngValue]="s">{{s.name}}</option>
             </select>
-            </div>
+        </div>
 
         <div class="col-md-4 multi-horizontal" data-for="email">
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="email-form1-2w">E-mail</label>
-                <input type="email" class="form-control" name="email" data-form-field="Email" required="">
+                <input type="email" class="form-control" name="email" [(ngModel)]="cliente.email" required="">
             </div>
         </div>
-        <div class="col-md-4 multi-horizontal" data-for="phone">
+        <div class="col-md-4 multi-horizontal" data-for="telefone">
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Telefone</label>
-                <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-2w">
+                <input type="tel" class="form-control" name="telefone" [(ngModel)]="cliente.telefone">
             </div>
         </div>
     </div>
 
 </form>
 
-<form #enderecoForm="ngForm">
+<form>
     <div class="row row-sm-offset">
         <div class="col-md-4 multi-horizontal" data-for="cep">
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">CEP</label>
-                <input type="text" class="form-control" name="cep" data-form-field="Cep" required="">
+                <input type="text" class="form-control" name="cep" 
+                    [(ngModel)]="endereco.cep" required=""
+                    (blur)="buscarCep(endereco.cep)">
             </div>
         </div>
-
         <div class="col-md-4 multi-horizontal" data-for="logradouro">
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Logradouro</label>
-                <input type="text" class="form-control" name="logradouro" data-form-field="Logradouro" required="">
-            </div>
-        </div>
-
-        <div class="col-md-4 multi-horizontal" data-for="endereco">
-            <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="email-form1-2w">Endereço</label>
-                <input type="email" class="form-control" name="endereco" data-form-field="Endereco" required=""
-                    id="email-form1-2w">
-            </div>
-        </div>
-        <div class="col-md-4 multi-horizontal" data-for="bairro">
-            <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Bairro</label>
-                <input type="tel" class="form-control" name="bairro" data-form-field="Bairro" required="">
+                <input type="text" class="form-control" name="logradouro" [(ngModel)]="endereco.logradouro" required="">
             </div>
         </div>
         <div class="col-md-4 multi-horizontal" data-for="numero">
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Número</label>
-                <input type="tel" class="form-control" name="numero" data-form-field="Numero" id="phone-form1-2w">
+                <input type="tel" class="form-control" name="numero" [(ngModel)]="endereco.numero">
+            </div>
+        </div>
+        <div class="col-md-4 multi-horizontal" data-for="bairro">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Bairro</label>
+                <input type="tel" class="form-control" name="bairro" [(ngModel)]="endereco.bairro" required="">
             </div>
         </div>
         <div class="col-md-4 multi-horizontal" data-for="complemento">
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Complemento</label>
-                <input type="tel" class="form-control" name="complemento" data-form-field="Complemento" id="phone-form1-2w">
+                <input type="tel" class="form-control" name="complemento" [(ngModel)]="endereco.complemento">
+            </div>
+        </div>
+        <div class="col-md-4 multi-horizontal" data-for="cidade">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Cidade</label>
+                <input type="tel" class="form-control"  [disabled]="true" name="cidade" [(ngModel)]="endereco.cidade">
+            </div>
+        </div>
+        <div class="col-md-4 multi-horizontal" data-for="ufEstado">
+            <div class="form-group">
+                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">UF</label>
+                <input type="tel" class="form-control" [disabled]="true" name="ufEstado" [(ngModel)]="endereco.ufEstado">
             </div>
         </div>
     </div>
 
     <span class="input-group-btn">
-        <button type="submit" class="btn btn-success" (click)="salvarCadastro()" [disabled]="!clienteForm.form.valid" >Salvar</button>
-        <button type="button" class="btn btn-warning" [routerLink]="['/lista-cliente']">Voltar</button>
+        <button type="submit" class="btn btn-success" (click)="salvarCadastro(cliente, endereco)" [disabled]="!clienteForm.form.valid" >Salvar</button>&nbsp;
+        <button type="button" class="btn btn-basic" [routerLink]="['/lista-cliente']">Voltar</button>
     </span>
 </form>

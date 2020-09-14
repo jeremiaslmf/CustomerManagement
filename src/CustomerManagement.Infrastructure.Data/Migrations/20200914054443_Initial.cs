@@ -30,7 +30,6 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                 {
                     Id = table.Column<string>(type: "CHAR(36)", nullable: false),
                     Logradouro = table.Column<string>(maxLength: 50, nullable: false),
-                    DescricaoEndereco = table.Column<string>(maxLength: 150, nullable: false),
                     Numero = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
                     Complemento = table.Column<string>(maxLength: 150, nullable: true),
                     Bairro = table.Column<string>(maxLength: 150, nullable: false),

@@ -27,6 +27,16 @@ export class ListaClienteComponent implements OnInit {
       return;
     }
 
-    this.clienteService.excluirCliente(id);
+    this.clienteService.excluirCliente(id)
+    .subscribe(
+      retorno => {
+        alert(":) Cliente excluído com sucesso!");
+        console.log(retorno);
+      },
+      error =>{
+        alert(":( Por algum motivo, o cliente não pode ser excluído!");
+        console.log(error);
+      } 
+    )
   }
 }

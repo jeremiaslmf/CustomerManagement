@@ -58,7 +58,7 @@ namespace CustomerManagement.Application.Services
                 ?? throw new Exception("Cliente não encontrado!");
 
         private Endereco CriarEndereco(EnderecoDTO.Gravar dto)
-            => new Endereco(dto.ClienteId, dto.Logradouro, dto.DescricaoEndereco, dto.Numero, dto.Complemento,
+            => new Endereco(dto.ClienteId, dto.Logradouro, dto.Numero, dto.Complemento,
                 dto.Bairro, dto.CEP, dto.Cidade, dto.UfEstado);
     }
 }

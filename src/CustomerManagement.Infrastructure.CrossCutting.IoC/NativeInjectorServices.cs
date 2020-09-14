@@ -14,6 +14,7 @@ namespace CustomerManagement.Infrastructure.CrossCutting.IoC
         {
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<IEnderecoService, EnderecoService>();
+            services.AddScoped<ICepService, CepService>();
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();

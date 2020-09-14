@@ -24,7 +24,7 @@ namespace CustomerManagement.Application.DTOs
             public string TipoSexo { get; set; }
             public string Email { get; set; }
             public string Telefone { get; set; }
-            public List<EnderecoDTO.Dados> Enderecos { get; set; }
+            public EnderecoDTO.Dados Endereco { get; set; }
         }
     }
 }

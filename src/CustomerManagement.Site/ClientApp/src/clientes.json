@@ -8,8 +8,7 @@
             "tipoSexo": "Outro",
             "email": "jeremiaslmf@gmail.com",
             "telefone": "44984062478",
-            "enderecos": [
-                {
+            "enderecos": {
                     "clienteId": "3447a59e-6ae1-4e35-b1a3-0974d77a5630",
                     "logradouro": "Rua",
                     "descricaoEndereco": "Asa Branca",
@@ -19,30 +18,7 @@
                     "cep": "87206162",
                     "cidade": "Cianorte",
                     "ufEstado": "PR"
-                },
-                {
-                    "clienteId": "3447a59e-6ae1-4e35-b1a3-0974d77a5630",
-                    "logradouro": "Avenida",
-                    "descricaoEndereco": "Rebouças",
-                    "numero": "40",
-                    "complemento": "Edificio Tamisa, AP. 05",
-                    "bairro": "Centro",
-                    "cep": "8720000",
-                    "cidade": "Cianorte",
-                    "ufEstado": "PR"
-                },
-                {
-                    "clienteId": "3447a59e-6ae1-4e35-b1a3-0974d77a5630",
-                    "logradouro": "Avenida",
-                    "descricaoEndereco": "Rebouças",
-                    "numero": "40",
-                    "complemento": "Edificio Tamisa, AP. 05",
-                    "bairro": "Centro",
-                    "cep": "8720000",
-                    "cidade": "Cianorte",
-                    "ufEstado": "PR"
                 }
-            ]
         },
         {
             "id": "7d7ad617-018c-46b1-9fb7-25ea37bd6e36",
@@ -52,8 +28,7 @@
             "tipoSexo": "Outro",
             "email": "carlosoliverlima_@outlook.com",
             "telefone": "11995772628",
-            "enderecos": [
-                {
+            "enderecos": {
                     "clienteId": "7d7ad617-018c-46b1-9fb7-25ea37bd6e36",
                     "logradouro": "Avenida",
                     "descricaoEndereco": "Desembargador Amaral",
@@ -64,7 +39,6 @@
                     "cidade": "Amarante",
                     "ufEstado": "PI"
                 }
-            ]
         }
     ]    
 }    

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from "./cliente"
+import { Guid } from '@angular'
+import { Endereco } from './endereco';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +18,10 @@ export class ClienteService {
   //   }, error => console.error(error));
   // }
   
-  protected UrlService: string = "http://localhost:44389/";
+  protected UrlService: string = "https://localhost:44389/";
 
   salvarCadastro(cliente : Cliente){
-    this.http.post(this.UrlService + "api/cliente/gravar", cliente)
+    return this.http.post(this.UrlService + "api/cliente/gravar", cliente)
   }
 
   obterPorClienteId(id : string) : Observable<Cliente> {
@@ -27,11 +29,15 @@ export class ClienteService {
   }
 
   obterTodos() : Observable<Cliente[]> {
-    return this.http.get<Cliente[]>("http://localhost:3000/clientes"); 
-    // return this.http.get<Cliente[]>(this.UrlService + "api/cliente/obterTodos"); 
+    // return this.http.get<Cliente[]>("http://localhost:3000/clientes"); 
+    return this.http.get<Cliente[]>(this.UrlService + "api/cliente/obterTodos"); 
   }
 
   excluirCliente(id: string) {
-    return this.http.post(this.UrlService + "api/cliente/excluir", { "Id" : id });
+    return this.http.post(this.UrlService + "api/cliente/excluir", { "Id" : id.trim() });
+  }
+
+  buscarCep(cep: string) : Observable<Endereco>{
+    return this.http.get<Endereco>(this.UrlService + "api/cep/" + cep);
   }
 }

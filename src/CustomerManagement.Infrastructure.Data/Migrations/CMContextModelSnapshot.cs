@@ -83,11 +83,6 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                         .HasColumnType("varchar(150)")
                         .HasMaxLength(150);
 
-                    b.Property<string>("DescricaoEndereco")
-                        .IsRequired()
-                        .HasColumnType("varchar(150)")
-                        .HasMaxLength(150);
-
                     b.Property<string>("Logradouro")
                         .IsRequired()
                         .HasColumnType("varchar(50)")

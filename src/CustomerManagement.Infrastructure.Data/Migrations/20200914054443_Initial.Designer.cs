@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomerManagement.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(CMContext))]
-    [Migration("20200912161544_Initial")]
+    [Migration("20200914054443_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,11 +82,6 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                         .HasColumnType("CHAR(36)");
 
                     b.Property<string>("Complemento")
-                        .HasColumnType("varchar(150)")
-                        .HasMaxLength(150);
-
-                    b.Property<string>("DescricaoEndereco")
-                        .IsRequired()
                         .HasColumnType("varchar(150)")
                         .HasMaxLength(150);
 

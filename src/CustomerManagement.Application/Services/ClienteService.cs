@@ -17,10 +17,11 @@ namespace CustomerManagement.Application.Services
 
         public bool Gravar(ClienteDTO.Gravar dto)
         {
-            var cliente = CriarCliente(dto);
-            SetEnderecosCliente(dto.Enderecos, cliente);
-            UnitOfWork.ClienteRepository.Add(cliente);
-            return UnitOfWork.SaveChanges();
+            Cliente cliente;
+            if ((cliente = UnitOfWork.ClienteRepository.GetById(dto.Id)) == null)
+                return CriarCliente(dto);
+
+            return EditarCliente(cliente, dto);
         }
 
         public void Exlcuir(ClienteDTO.Excluir dto)
@@ -31,12 +32,9 @@ namespace CustomerManagement.Application.Services
 
         public ClienteDTO.Retorno GetById(Guid id)
         {
-            var cliente = GetCliente(id);
-            var enderecos = UnitOfWork.EnderecoRepository.GetAllByClienteId(cliente.Id);
-            foreach (var item in enderecos)
-                cliente.AdicionarEndereco(item);
-                
-            return TinyMapper.Map<ClienteDTO.Retorno>(cliente);
+            var cliente = TinyMapper.Map<ClienteDTO.Retorno>(GetCliente(id));
+            cliente.Endereco = TinyMapper.Map<EnderecoDTO.Retorno>(UnitOfWork.EnderecoRepository.GetAllByClienteId(id).FirstOrDefault());
+            return cliente;
         }
 
         public List<ClienteDTO.Retorno> GetAll()
@@ -49,23 +47,34 @@ namespace CustomerManagement.Application.Services
             => UnitOfWork.ClienteRepository.GetById(id)
                 ?? throw new Exception("Cliente não encontrado!");
 
-        private Cliente CriarCliente(ClienteDTO.Gravar dto)
-            => new Cliente(dto.Nome, dto.SobreNome, dto.DataNascimento,
-                TipoSexo.Outro, dto.Email, dto.Telefone);
-
-        private void SetEnderecosCliente(List<EnderecoDTO.Dados> enderecos, Cliente cliente)
+        private bool CriarCliente(ClienteDTO.Gravar dto)
         {
-            enderecos.ForEach(x =>
-                cliente.AdicionarEndereco(new Endereco(
-                    cliente.Id,
-                    x.Logradouro,
-                    x.DescricaoEndereco,
-                    x.Numero,
-                    x.Complemento,
-                    x.Bairro,
-                    x.CEP,
-                    x.Cidade,
-                    x.UfEstado)));
+            var cliente = new Cliente(dto.Nome, dto.SobreNome, dto.DataNascimento,
+                TipoSexo.Outro, dto.Email, dto.Telefone);
+            SetEnderecoCliente(dto.Endereco, cliente);
+            UnitOfWork.ClienteRepository.Add(cliente);
+            return UnitOfWork.SaveChanges();
+        }
+            
+        private void SetEnderecoCliente(EnderecoDTO.Dados endereco, Cliente cliente)
+        {
+            cliente.AdicionarEndereco(new Endereco(
+                cliente.Id,
+                endereco.Logradouro,
+                endereco.Numero,
+                endereco.Complemento,
+                endereco.Bairro,
+                endereco.CEP,
+                endereco.Cidade,
+                endereco.UfEstado));
+        }
+
+        private bool EditarCliente(Cliente cliente, ClienteDTO.Gravar dto)
+        {
+            var endereco = UnitOfWork.EnderecoRepository.GetAllByClienteId(dto.Id).FirstOrDefault();
+            cliente.AdicionarEndereco(endereco);
+            UnitOfWork.ClienteRepository.Update(cliente);
+            return UnitOfWork.SaveChanges();
         }
     }
 }

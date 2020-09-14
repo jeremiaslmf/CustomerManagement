@@ -8,5 +8,5 @@ export class Cliente {
     tipoSexo: string;
     email: string;
     telefone: string;
-    Enderecos: Endereco[];
+    endereco: Endereco;
   }

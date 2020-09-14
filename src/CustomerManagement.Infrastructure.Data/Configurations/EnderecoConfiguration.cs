@@ -23,10 +23,6 @@ namespace CustomerManagement.Infrastructure.Data.Mappings
                 .HasMaxLength(50)
                 .IsRequired();
 
-            b.Property(c => c.DescricaoEndereco)
-                .HasMaxLength(150)
-                .IsRequired();
-
             b.Property(c => c.Numero)
                 .HasColumnType("VARCHAR(20)")
                  .HasMaxLength(20)
