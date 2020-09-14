@@ -3,8 +3,8 @@ import { Endereco } from "./endereco";
 export class Cliente {
     id: string;
     nome: string;
-    sobreNome: string;
-    dataNascimento : Date;
+    sobrenome: string;
+    dataNascimento : string;
     tipoSexo: string;
     email: string;
     telefone: string;

@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Endereco } from '../endereco';
 import { Sexo } from '../sexo';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { PipeFormatDate } from 'src/app/app.component';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -12,7 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CadastroClienteComponent implements OnInit {
   
-  constructor(private route: ActivatedRoute, private clienteService: ClienteService) { }
+  constructor(private route: ActivatedRoute, private clienteService: ClienteService, private pipeFormatDate: PipeFormatDate) { }
 
   public cliente: Cliente = new Cliente;
   public endereco: Endereco = new Endereco;
@@ -20,6 +22,9 @@ export class CadastroClienteComponent implements OnInit {
 
   ngOnInit() : void {
     const clienteId = this.route.snapshot.paramMap.get('id');
+    if (clienteId == null){
+      return;
+    }
     this.clienteService.obterPorClienteId(clienteId)
       .subscribe(
         retorno => {
@@ -53,5 +58,9 @@ export class CadastroClienteComponent implements OnInit {
         },
         error => console.log(error)
       );
+  }
+
+  formatDate(dataNascimento: string){
+    this.cliente.dataNascimento = this.pipeFormatDate.transform(dataNascimento);
   }
 }

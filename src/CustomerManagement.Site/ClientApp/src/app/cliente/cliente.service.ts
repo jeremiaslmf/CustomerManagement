@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from "./cliente"
-import { Guid } from '@angular'
 import { Endereco } from './endereco';
 
 @Injectable({

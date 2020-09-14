@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { AppComponent, PipeFormatDate } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ListaClienteComponent } from './cliente/lista-cliente/lista-cliente.component';
@@ -12,13 +12,18 @@ import { CadastroClienteComponent } from './cliente/cadastro-cliente/cadastro-cl
 
 import { ClienteService } from './cliente/cliente.service';
 
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
+
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
     ListaClienteComponent,
-    CadastroClienteComponent
+    CadastroClienteComponent,
+    PipeFormatDate
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,7 +37,9 @@ import { ClienteService } from './cliente/cliente.service';
     ])
   ],
   providers: [
-    ClienteService
+    { provide: LOCALE_ID, useValue: 'pt'},
+    ClienteService, 
+    PipeFormatDate
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 
-<h2>Lista de clientes</h2>
+<h2>Manutenção de clientes</h2>
 <button type="button" class="btn btn-primary" [routerLink]="['/cadastro-cliente']">Novo cadastro</button>
 <p *ngIf="!clientes"><em>carregando...</em></p>
 <p></p>
@@ -16,7 +16,7 @@
   <tbody>
     <tr *ngFor="let cliente of clientes">
       <td>{{ cliente.nome }}</td>
-      <td>{{ cliente.sobreNome }}</td>
+      <td>{{ cliente.sobrenome }}</td>
       <td>{{ cliente.email }}</td>
       <td>{{ cliente.telefone }}</td>
       <div>
