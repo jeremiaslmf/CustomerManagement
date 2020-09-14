@@ -22,7 +22,6 @@ namespace CustomerManagement.Application.Services
             var response = await _httpClient.GetAsync(string.Format(_uri, dto.Cep));
             var retornoJson = response.Content.ReadAsStringAsync().Result;
             var endereco = JsonSerializer.Deserialize<CepDTO.Retorno>(retornoJson);
-            //TinyMapper.Bind<Task<string>, CepDTO.Retorno>();
             return endereco;
         }
     }

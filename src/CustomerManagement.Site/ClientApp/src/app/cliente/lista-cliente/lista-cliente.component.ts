@@ -30,10 +30,10 @@ export class ListaClienteComponent implements OnInit {
     this.clienteService.excluirCliente(id)
     .subscribe(
       retorno => {
-        alert(":) Cliente excluído com sucesso!");
+        this.clientes = this.clientes.filter(x => x.id != id);
         console.log(retorno);
       },
-      error =>{
+      error => {
         alert(":( Por algum motivo, o cliente não pode ser excluído!");
         console.log(error);
       } 
