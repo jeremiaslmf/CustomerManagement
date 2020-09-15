@@ -23,12 +23,14 @@ export class CadastroClienteComponent implements OnInit {
   ngOnInit() : void {
     const clienteId = this.route.snapshot.paramMap.get('id');
     if (clienteId == null){
+      console.log("Cadastro Novo")
       return;
     }
     this.clienteService.obterPorClienteId(clienteId)
       .subscribe(
         retorno => {
           this.cliente = retorno;
+          console.log(retorno);
           this.endereco = this.cliente.endereco;
           this.sexo.selectedValue = this.cliente.tipoSexo;
         },

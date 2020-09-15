@@ -20,11 +20,10 @@ namespace CustomerManagement.WebApi.Controllers
         [Route("gravar")]
         public IActionResult Gravar([FromBody] ClienteDTO.Gravar dto)
         {
-            var retorno = _clienteService.Gravar(dto);
-            if (string.IsNullOrEmpty(retorno.ToString()))
+            if (!_clienteService.Gravar(dto))
                 return BadRequest();
 
-            return Ok(retorno);
+            return Ok();
         }
 
         [HttpPost]

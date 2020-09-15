@@ -22,7 +22,8 @@
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Data Nascimento</label>
                 <input type="text" class="form-control" name="dataNascimento" placeholder="informe a data de nascimento"
-                    [(ngModel)]="cliente.dataNascimento" (blur)="formatDate(cliente.dataNascimento)" required="">
+                    [(ngModel)]="cliente.dataNascimento" 
+                    (blur)="formatDate(cliente.dataNascimento)" required="">
             </div>
             <!-- {{cliente.dataNascimento | date: 'dd/MM/yyyy'}} -->
         </div>
@@ -94,13 +95,13 @@
         <div class="col-md-4 multi-horizontal" data-for="cidade">
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Cidade</label>
-                <input type="tel" class="form-control"  [disabled]="true" name="cidade" [(ngModel)]="endereco.cidade">
+                <input type="tel" class="form-control"  [disabled]="true" name="cidade" [(ngModel)]="endereco.localidade">
             </div>
         </div>
         <div class="col-md-4 multi-horizontal" data-for="ufEstado">
             <div class="form-group">
                 <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">UF</label>
-                <input type="tel" class="form-control" [disabled]="true" name="ufEstado" [(ngModel)]="endereco.ufEstado">
+                <input type="tel" class="form-control" [disabled]="true" name="ufEstado" [(ngModel)]="endereco.uf">
             </div>
         </div>
     </div>

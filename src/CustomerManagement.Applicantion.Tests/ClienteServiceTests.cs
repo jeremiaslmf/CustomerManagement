@@ -33,7 +33,7 @@ namespace CustomerManagement.Applicantion.Tests
         public void NovoCadastro_DadosValidos_ExpectedTrue()
         {
             using var context = CMTestsContext.SqlLiteInMemoryContext();
-            var iuow = new UnitOfWorkTest(context);
+            var iuow = new UnitOfWork(context);
             var clienteService = new ClienteService(iuow);
 
             var genero = Gender.Female;
@@ -45,7 +45,7 @@ namespace CustomerManagement.Applicantion.Tests
 
             Assert.IsNotNull(dto.Id);
             Assert.AreEqual(dto.Nome, cliente.Nome);
-            Assert.AreEqual(dto.SobreNome, cliente.SobreNome);
+            Assert.AreEqual(dto.Sobrenome, cliente.Sobrenome);
             Assert.AreEqual(dto.DataNascimento, cliente.DataNascimento);
             Assert.AreEqual(dto.TipoSexo, cliente.TipoSexo.ToString());
             Assert.AreEqual(dto.Email, cliente.Email);
@@ -71,7 +71,7 @@ namespace CustomerManagement.Applicantion.Tests
         {
             // Arrange
             using var context = CMTestsContext.SqlLiteInMemoryContext();
-            var iuow = new UnitOfWorkTest(context);
+            var iuow = new UnitOfWork(context);
             var clienteService = new ClienteService(iuow);
             var genero = Gender.Male;
             var dto = GetCliente(genero, TipoSexo.Masculino, new DateTime(1990, 10, 10));
@@ -88,7 +88,7 @@ namespace CustomerManagement.Applicantion.Tests
             // Assert
             Assert.IsNotNull(dto.Id);
             Assert.AreNotEqual(dto.Nome, cliente.Nome);
-            Assert.AreNotEqual(dto.SobreNome, cliente.SobreNome);
+            Assert.AreNotEqual(dto.Sobrenome, cliente.Sobrenome);
             Assert.AreNotEqual(dto.DataNascimento, cliente.DataNascimento);
             Assert.AreNotEqual(dto.TipoSexo, cliente.TipoSexo.ToString());
             Assert.AreNotEqual(dto.Email, cliente.Email);
@@ -113,14 +113,15 @@ namespace CustomerManagement.Applicantion.Tests
         {
             // Arrange
             using var context = CMTestsContext.SqlLiteInMemoryContext();
-            var iuow = new UnitOfWorkTest(context);
+            var iuow = new UnitOfWork(context);
             var clienteService = new ClienteService(iuow);
             var genero = Gender.Male;
             var dto = GetCliente(genero, TipoSexo.Masculino, new DateTime(1990, 10, 10));
             dto.Endereco = GetEndereco(dto, "001");
 
             // Act
-            var clienteId1 = clienteService.Gravar(dto);
+            clienteService.Gravar(dto);
+            var clienteId1 = iuow.ClienteRepository.GetAll().FirstOrDefault().Id;
             clienteService.Exlcuir(new ClienteDTO.Excluir(clienteId1));
 
             //Assert
@@ -136,7 +137,7 @@ namespace CustomerManagement.Applicantion.Tests
         {
             // Arrange
             using var context = CMTestsContext.SqlLiteInMemoryContext();
-            var iuow = new UnitOfWorkTest(context);
+            var iuow = new UnitOfWork(context);
             var clienteService = new ClienteService(iuow);
 
             //Assert
@@ -144,7 +145,6 @@ namespace CustomerManagement.Applicantion.Tests
             clienteService.Exlcuir(new ClienteDTO.Excluir(Guid.NewGuid())),
             "Exceção não lançada para cliente inexistente");
         }
-
 
         [TestMethod]
         [Owner(_owner)]
@@ -154,20 +154,21 @@ namespace CustomerManagement.Applicantion.Tests
         {
             // Arrange
             using var context = CMTestsContext.SqlLiteInMemoryContext();
-            var iuow = new UnitOfWorkTest(context);
+            var iuow = new UnitOfWork(context);
             var clienteService = new ClienteService(iuow);
             var genero = Gender.Male;
             var dto = GetCliente(genero, TipoSexo.Masculino, new DateTime(1980, 10, 15));
             dto.Endereco = GetEndereco(dto, "444");
 
             // Act
-            var clienteId = clienteService.Gravar(dto);
+            clienteService.Gravar(dto);
+            var clienteId = iuow.ClienteRepository.GetAll().FirstOrDefault().Id;
             var cliente = clienteService.GetById(clienteId);
 
             //Assert
             Assert.IsNotNull(dto.Id);
             Assert.AreEqual(dto.Nome, cliente.Nome);
-            Assert.AreEqual(dto.SobreNome, cliente.SobreNome);
+            Assert.AreEqual(dto.Sobrenome, cliente.Sobrenome);
             Assert.AreEqual(dto.DataNascimento, cliente.DataNascimento);
             Assert.AreEqual(dto.TipoSexo, cliente.TipoSexo.ToString());
             Assert.AreEqual(dto.Email, cliente.Email);
@@ -192,7 +193,7 @@ namespace CustomerManagement.Applicantion.Tests
         {
             // Arrange
             using var context = CMTestsContext.SqlLiteInMemoryContext();
-            var iuow = new UnitOfWorkTest(context);
+            var iuow = new UnitOfWork(context);
             var clienteService = new ClienteService(iuow);
 
             //Act/Assert
@@ -215,7 +216,7 @@ namespace CustomerManagement.Applicantion.Tests
         private static ClienteDTO.Gravar GetCliente(Gender genero, TipoSexo tipoSexo, DateTime dataNascimento)
             => new Faker<ClienteDTO.Gravar>()
                 .RuleFor(p => p.Nome, p => p.Name.FirstName(genero))
-                .RuleFor(p => p.SobreNome, p => p.Name.LastName(genero))
+                .RuleFor(p => p.Sobrenome, p => p.Name.LastName(genero))
                 .RuleFor(p => p.DataNascimento, p => dataNascimento)
                 .RuleFor(p => p.TipoSexo, p => tipoSexo.ToString())
                 .RuleFor(p => p.Email, p => p.Person.Email)

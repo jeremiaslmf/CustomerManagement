@@ -15,7 +15,7 @@ namespace CustomerManagement.Application.Services
     {
         public ClienteService(IUnitOfWork iuow) : base(iuow) { }
 
-        public Guid Gravar(ClienteDTO.Gravar dto)
+        public bool Gravar(ClienteDTO.Gravar dto)
         {
             Cliente cliente;
             if ((cliente = UnitOfWork.ClienteRepository.GetById(dto.Id)) == null)
@@ -51,14 +51,13 @@ namespace CustomerManagement.Application.Services
             => UnitOfWork.ClienteRepository.GetById(id)
                 ?? throw new Exception("Cliente não encontrado!");
 
-        private Guid CriarCliente(ClienteDTO.Gravar dto)
+        private bool CriarCliente(ClienteDTO.Gravar dto)
         {
-            var cliente = new Cliente(dto.Nome, dto.SobreNome, dto.DataNascimento,
+            var cliente = new Cliente(dto.Nome, dto.Sobrenome, dto.DataNascimento,
                 GetCompatibilidadeSexo(dto.TipoSexo), dto.Email, dto.Telefone);
             SetEnderecoCliente(dto.Endereco, cliente);
             UnitOfWork.ClienteRepository.Add(cliente);
-            UnitOfWork.SaveChanges();
-            return cliente.Id;
+            return UnitOfWork.SaveChanges();
         }
 
         private TipoSexo GetCompatibilidadeSexo(string tipoSexo)
@@ -81,13 +80,12 @@ namespace CustomerManagement.Application.Services
                 endereco.UfEstado));
         }
 
-        private Guid EditarCliente(Cliente cliente, ClienteDTO.Gravar dto)
+        private bool EditarCliente(Cliente cliente, ClienteDTO.Gravar dto)
         {
             var endereco = UnitOfWork.EnderecoRepository.GetAllByClienteId(dto.Id).FirstOrDefault();
             cliente.AdicionarEndereco(endereco);
             UnitOfWork.ClienteRepository.Update(cliente);
-            UnitOfWork.SaveChanges();
-            return cliente.Id;
+            return UnitOfWork.SaveChanges();
         }
 
         private void MapDatas()

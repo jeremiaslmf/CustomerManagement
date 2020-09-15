@@ -19,7 +19,7 @@ namespace CustomerManagement.Infrastructure.CrossCutting.IoC
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
             
-            services.AddScoped<IUnitOfWork, UnitOfWorkTest>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<CMContext>();
             services.AddDbContext<CMTestsContext>();
         }

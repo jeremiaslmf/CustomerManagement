@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.Domain.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.Application.Tests", "src\CustomerManagement.Applicantion.Tests\CustomerManagement.Application.Tests.csproj", "{FF17E4C6-F5CA-4F53-B6CF-A97B5795267B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.Infrastructure.CrossCuting.Extensions", "CustomerManagement.Infrastructure.CrossCuting.Extensions\CustomerManagement.Infrastructure.CrossCuting.Extensions.csproj", "{B6D32C3A-9DCC-4102-AC84-6DA3BDD4A2CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.Infrastructure.CrossCuting.Extensions", "src\CustomerManagement.Infrastructure.CrossCuting.Extensions\CustomerManagement.Infrastructure.CrossCuting.Extensions.csproj", "{B6D32C3A-9DCC-4102-AC84-6DA3BDD4A2CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

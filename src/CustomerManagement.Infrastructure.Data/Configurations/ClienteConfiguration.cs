@@ -20,7 +20,7 @@ namespace CustomerManagement.Infrastructure.Data.Mappings
                 .HasMaxLength(20)
                 .IsRequired();
 
-            b.Property(c => c.SobreNome)
+            b.Property(c => c.Sobrenome)
                  .HasMaxLength(100)
                 .IsRequired();
 

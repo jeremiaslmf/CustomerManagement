@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CustomerManagement.Infrastructure.Data.Context
 {
-    public abstract class CMContext : DbContext
+    public class CMContext : DbContext
     {
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }

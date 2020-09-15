@@ -1,7 +1,5 @@
 import { Component, Pipe, PipeTransform, LOCALE_ID } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { reverse } from 'dns';
-
 
 @Component({
   selector: 'app-root',

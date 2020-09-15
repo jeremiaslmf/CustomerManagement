@@ -5,6 +5,6 @@ export class Endereco {
     complemento: string;
     bairro: string;
     cep: string;
-    cidade: string;
-    ufEstado: string;
+    localidade: string;
+    uf: string;
   }

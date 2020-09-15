@@ -6,7 +6,7 @@ namespace CustomerManagement.Application.Interfaces
 {
     public interface IClienteService
     {
-        Guid Gravar(ClienteDTO.Gravar dto);
+        bool Gravar(ClienteDTO.Gravar dto);
         void Exlcuir(ClienteDTO.Excluir dto);
         ClienteDTO.Retorno GetById(Guid id);
         List<ClienteDTO.Retorno> GetAll();

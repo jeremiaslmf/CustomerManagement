@@ -9,7 +9,7 @@ namespace CustomerManagement.Domain.Entities
     public class Cliente : Entity<Cliente>
     {
         public string Nome { get; private set; }
-        public string SobreNome { get; private set; }
+        public string Sobrenome { get; private set; }
         public DateTime DataNascimento { get; private set; }
         public TipoSexo TipoSexo { get; private set; }
         public string Email { get; private set; }
@@ -21,7 +21,7 @@ namespace CustomerManagement.Domain.Entities
         {
             this.CreateGuid();
             Nome = nome;
-            SobreNome = sobreNome;
+            Sobrenome = sobreNome;
             DataNascimento = dataNascimento;
             TipoSexo = tipoSexo;
             Email = email;
@@ -44,7 +44,7 @@ namespace CustomerManagement.Domain.Entities
                .NotEmpty().WithMessage("O campo Nome é obrigatório")
                .Length(2, 150).WithMessage("Deve conter entre 2 e 15 caracteres");
 
-            RuleFor(x => x.SobreNome)
+            RuleFor(x => x.Sobrenome)
                .NotEmpty().WithMessage("O campo Sobrenome é obrigatório")
                .Length(2, 150).WithMessage("Deve conter entre 2 e 150 caracteres");
         }

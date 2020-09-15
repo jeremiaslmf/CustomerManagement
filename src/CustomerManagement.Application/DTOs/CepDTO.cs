@@ -22,10 +22,13 @@ namespace CustomerManagement.Application.DTOs
             public string Complemento { get; set; }
             [JsonPropertyName("bairro")]
             public string Bairro { get; set; }
+            
+
+
             [JsonPropertyName("localidade")]
-            public string Cidade { get; set; }
+            public string Localidade { get; set; }
             [JsonPropertyName("uf")]
-            public string UfEstado { get; set; }
+            public string Uf { get; set; }
 
         }
     }
