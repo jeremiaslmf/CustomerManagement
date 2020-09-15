@@ -1,0 +1,29 @@
+Teste cadastro de clientes 
+
+Objetivo:
+
+Desenvolver sistema para cadastro de clientes com as funcionalidades de listagem, adição/edição e remoção.              
+
+1ª tela: Listagem dos clientes cadastrados em grid, disponibilizar botões: Adicionar, editar e remover clientes.
+
+2ª tela: Tela para adicionar/editar clientes.
+
+OBS: Preferencialmente em angular
+
+ 
+
+Diretrizes:
+
+            - Utilizar qualquer framework/biblioteca em C#
+
+            - Utilizar Mysql como banco de dados.
+
+            - Campos para o cadastro de cliente: Nome, data de nascimento, sexo, cep, endereço, número, complemento, bairro, estado, cidade.
+
+            - Consumir webservice para consulta de cep: https://viacep.com.br/, preencher campos do cadastro após a consulta do cep.
+
+            - Validar cadastro de cliente: Nome, data de nascimento e sexo obrigatórios.
+
+Envio do teste:
+
+            - Disponibilizar o teste com o script de criação do banco de dados(ou migrations) através de um repositório no github.
