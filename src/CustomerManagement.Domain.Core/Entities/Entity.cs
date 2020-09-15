@@ -11,7 +11,7 @@ namespace Eventos.IO.Domain.Core.Models
 
         protected Entity()
         {
-            ValidationResult = new ValidationResult();
+            //ValidationResult = new ValidationResult();
         }
 
         public void CreateGuid() => Id = Guid.NewGuid();
@@ -34,22 +34,6 @@ namespace Eventos.IO.Domain.Core.Models
         public override int GetHashCode()
         {
             return (GetType().GetHashCode() * 907) + Id.GetHashCode();
-        }
-
-        public static bool operator ==(Entity<T> a, Entity<T> b)
-        {
-            if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
-                return true;
-
-            if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
-                return false;
-
-            return a.Equals(b);
-        }
-
-        public static bool operator !=(Entity<T> a, Entity<T> b)
-        {
-            return !(a == b);
         }
 
         public override string ToString()

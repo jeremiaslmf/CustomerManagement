@@ -1,6 +1,5 @@
 ﻿using CustomerManagement.Application.DTOs;
 using System;
-using System.Collections.Generic;
 
 namespace CustomerManagement.Application.Models
 {
@@ -14,5 +13,7 @@ namespace CustomerManagement.Application.Models
         public string Email { get; set; }
         public string Telefone { get; set; }
         public EnderecoDTO.Dados Endereco { get; set; }
+
+        public ClienteModel() { }
     }
 }

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CustomerManagement.Infrastructure.CrossCuting.Extensions\CustomerManagement.Infrastructure.CrossCuting.Extensions.csproj" />
     <ProjectReference Include="..\CustomerManagement.Domain\CustomerManagement.Domain.csproj" />
   </ItemGroup>
 

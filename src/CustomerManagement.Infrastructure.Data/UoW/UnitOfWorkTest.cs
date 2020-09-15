@@ -4,14 +4,14 @@ using CustomerManagement.Infrastructure.Data.Repositories;
 
 namespace CustomerManagement.Infrastructure.Data.Uow
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWorkTest : IUnitOfWork
     {
         private readonly CMContext _context;
 
         private ClienteRepository _clienteRepository;
         private EnderecoRepository _enderecoRepository;
 
-        public UnitOfWork(CMContext context)
+        public UnitOfWorkTest(CMContext context)
         {
             _context = context;
         }

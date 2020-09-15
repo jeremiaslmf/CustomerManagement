@@ -21,13 +21,26 @@ namespace CustomerManagement.Application.DTOs
         {
             public Guid ClienteId { get; set; }
             public string Logradouro { get; set; }
-            public string DescricaoEndereco { get; set; }
             public string Numero { get; set; }
             public string Complemento { get; set; }
             public string Bairro { get; set; }
             public string CEP { get; set; }
             public string Cidade { get; set; }
             public string UfEstado { get; set; }
+
+            public Dados(string logradouro, string numero, string complemento, 
+                string bairro, string cep, string cidade, string ufEstado)
+            {
+                Logradouro = logradouro;
+                Numero = numero;
+                Complemento = complemento;
+                Bairro = bairro;
+                CEP = cep;
+                Cidade = cidade;
+                UfEstado = ufEstado;
+            }
+
+            public Dados() { }
         }
 
         public class Retorno : Dados

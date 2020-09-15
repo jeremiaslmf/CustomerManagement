@@ -1,6 +1,7 @@
 ﻿using CustomerManagement.Application.DTOs;
 using CustomerManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace CustomerManagement.WebApi.Controllers
 {
@@ -19,10 +20,11 @@ namespace CustomerManagement.WebApi.Controllers
         [Route("gravar")]
         public IActionResult Gravar([FromBody] ClienteDTO.Gravar dto)
         {
-            if (!_clienteService.Gravar(dto))
+            var retorno = _clienteService.Gravar(dto);
+            if (string.IsNullOrEmpty(retorno.ToString()))
                 return BadRequest();
 
-            return Ok();
+            return Ok(retorno);
         }
 
         [HttpPost]

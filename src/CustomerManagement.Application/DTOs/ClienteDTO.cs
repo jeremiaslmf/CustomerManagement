@@ -1,18 +1,45 @@
 ﻿using CustomerManagement.Application.Models;
 using System;
-using System.Collections.Generic;
 
 namespace CustomerManagement.Application.DTOs
 {
     public class ClienteDTO
     {
-        public class Gravar : ClienteModel { }
+        public class Gravar : ClienteModel
+        {
+            public Gravar(string nome, string sobreNome,
+                DateTime dataNascimento, string tipoSexo, string email,
+                string telefone, EnderecoDTO.Dados endereco)
+            {
+                Nome = nome;
+                SobreNome = sobreNome;
+                DataNascimento = dataNascimento;
+                TipoSexo = tipoSexo;
+                Email = email;
+                Telefone = telefone;
+                Endereco = endereco;
+            }
 
-        public class Excluir : ObterPorId { }
+            public Gravar() { }
+        }
+
+        public class Excluir : ObterPorId
+        {
+            public Excluir(Guid id) : base(id) { }
+
+            public Excluir() { }
+        }
 
         public class ObterPorId
         {
             public Guid Id { get; set; }
+
+            public ObterPorId(Guid id)
+            {
+                Id = id;
+            }
+
+            public ObterPorId() { }
         }
 
         public class Retorno
