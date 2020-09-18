@@ -16,8 +16,8 @@ namespace CustomerManagement.Domain.Entities
             Complemento = complemento;
             Bairro = bairro;
             CEP = cep;
-            Cidade = cidade;
-            UfEstado = ufEstado;
+            Localidade = cidade;
+            Uf = ufEstado;
         }
 
         protected Endereco() { }
@@ -27,8 +27,8 @@ namespace CustomerManagement.Domain.Entities
         public string Complemento { get; private set; }
         public string Bairro { get; private set; }
         public string CEP { get; private set; }
-        public string Cidade { get; private set; }
-        public string UfEstado { get; private set; }
+        public string Localidade { get; private set; }
+        public string Uf { get; private set; }
 
         public Guid ClienteId { get; private set; }
         public virtual Cliente Cliente { get; private set; }
@@ -73,14 +73,14 @@ namespace CustomerManagement.Domain.Entities
 
         private void ValidarCidade()
         {
-            RuleFor(x => x.Cidade)
+            RuleFor(x => x.Localidade)
                 .NotEmpty().WithMessage("O campo Cidade é obrigatório")
                 .Length(2, 150).WithMessage("Deve conter entre 2 e 150 caracteres");
         }
 
         private void ValidarEstado()
         {
-            RuleFor(x => x.UfEstado)
+            RuleFor(x => x.Uf)
                 .NotEmpty().WithMessage("O campo Estado é obrigatório")
                 .Length(2, 150).WithMessage("Deve conter entre 2 e 150 caracteres");
         }

@@ -1,6 +1,5 @@
 ﻿using CustomerManagement.Application.DTOs;
 using CustomerManagement.Application.Interfaces;
-using CustomerManagement.Application.Models;
 using CustomerManagement.Domain.Entities;
 using CustomerManagement.Domain.Enums;
 using CustomerManagement.Domain.Interfaces;
@@ -76,8 +75,8 @@ namespace CustomerManagement.Application.Services
                 endereco.Complemento,
                 endereco.Bairro,
                 endereco.CEP,
-                endereco.Cidade,
-                endereco.UfEstado));
+                endereco.Localidade,
+                endereco.Uf));
         }
 
         private bool EditarCliente(Cliente cliente, ClienteDTO.Gravar dto)

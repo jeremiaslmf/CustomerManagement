@@ -12,12 +12,12 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "CHAR(36)", nullable: false),
-                    Nome = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
-                    SobreNome = table.Column<string>(maxLength: 100, nullable: false),
+                    Nome = table.Column<string>(maxLength: 20, nullable: false),
+                    Sobrenome = table.Column<string>(maxLength: 100, nullable: false),
                     DataNascimento = table.Column<DateTime>(type: "DATE", nullable: false),
                     TipoSexo = table.Column<int>(nullable: false),
                     Email = table.Column<string>(maxLength: 100, nullable: true),
-                    Telefone = table.Column<string>(type: "VARCHAR(11)", nullable: true)
+                    Telefone = table.Column<string>(type: "CHAR(11)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -34,7 +34,7 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                     Complemento = table.Column<string>(maxLength: 150, nullable: true),
                     Bairro = table.Column<string>(maxLength: 150, nullable: false),
                     CEP = table.Column<string>(type: "CHAR(8)", maxLength: 8, nullable: false),
-                    Cidade = table.Column<string>(maxLength: 50, nullable: false),
+                    Localidade = table.Column<string>(maxLength: 50, nullable: false),
                     UF = table.Column<string>(type: "CHAR(2)", maxLength: 2, nullable: false),
                     ClienteId = table.Column<string>(nullable: false)
                 },

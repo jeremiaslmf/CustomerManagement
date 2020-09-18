@@ -1,8 +1,10 @@
 using CustomerManagement.Application.Mappings;
 using CustomerManagement.Infrastructure.CrossCutting.IoC;
+using CustomerManagement.Infrastructure.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,8 +28,11 @@ namespace CustomerManagement.Site
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.AddDbContext<CMContext>(opt =>
+                opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+
             TinyMappings.Configure();
-            RegisterServices(services);
+            NativeInjectorDependencies.ResolveDependencies(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -69,9 +74,5 @@ namespace CustomerManagement.Site
             });
         }
 
-        private static void RegisterServices(IServiceCollection services)
-        {
-            NativeInjectorServices.RegisterServices(services);
-        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using CustomerManagement.Application.Models;
-using System;
+﻿using System;
 
 namespace CustomerManagement.Application.DTOs
 {

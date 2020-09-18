@@ -17,10 +17,10 @@ namespace CustomerManagement.Infrastructure.Data.Uow
         }
 
         public IClienteRepository ClienteRepository
-        { get => _clienteRepository ?? new ClienteRepository(_context); }
+        { get => _clienteRepository ??= new ClienteRepository(_context); }
         
         public IEnderecoRepository EnderecoRepository
-        { get => _enderecoRepository ?? new EnderecoRepository(_context); }
+        { get => _enderecoRepository ??= new EnderecoRepository(_context); }
 
         public bool SaveChanges() => _context.SaveChanges() > 0;
 

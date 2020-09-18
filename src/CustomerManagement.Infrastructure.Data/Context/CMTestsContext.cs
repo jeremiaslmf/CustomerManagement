@@ -1,30 +1,16 @@
-﻿using CustomerManagement.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace CustomerManagement.Infrastructure.Data.Context
 {
     public class CMTestsContext : CMContext
     {
-        private DbContextOptions<CMTestsContext> optionsBuilder;
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public CMTestsContext(DbContextOptions<CMContext> options) : base(options)
         {
-            GetConnection(optionsBuilder);
-        }
-
-        protected override void GetConnection(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("DataSource=:memory:");
-        }
-
-        public CMTestsContext(DbContextOptions<CMTestsContext> optionsBuilder)
-        {
-            this.optionsBuilder = optionsBuilder;
         }
 
         public static CMTestsContext SqlLiteInMemoryContext()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<CMTestsContext>()
+            var optionsBuilder = new DbContextOptionsBuilder<CMContext>()
                 .UseSqlite("DataSource=:memory:")
                 .Options;
 
@@ -33,6 +19,6 @@ namespace CustomerManagement.Infrastructure.Data.Context
             context.Database.EnsureCreated();
             return context;
         }
-
     }
+
 }

@@ -1,16 +1,10 @@
 using Bogus;
 using CustomerManagement.Application.DTOs;
-using CustomerManagement.Application.Interfaces;
-using CustomerManagement.Application.Models;
 using CustomerManagement.Application.Services;
-using CustomerManagement.Domain.Entities;
 using CustomerManagement.Domain.Enums;
-using CustomerManagement.Domain.Interfaces;
 using CustomerManagement.Infrastructure.Data.Context;
 using CustomerManagement.Infrastructure.Data.Uow;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
 using System;
 using System.Linq;
 using static Bogus.DataSets.Name;
@@ -57,8 +51,8 @@ namespace CustomerManagement.Applicantion.Tests
             Assert.AreEqual(dto.Endereco.Numero, endereco.Numero);
             Assert.AreEqual(dto.Endereco.Bairro, endereco.Bairro);
             Assert.AreEqual(dto.Endereco.Complemento, endereco.Complemento);
-            Assert.AreEqual(dto.Endereco.Cidade, endereco.Cidade);
-            Assert.AreEqual(dto.Endereco.UfEstado, endereco.UfEstado);
+            Assert.AreEqual(dto.Endereco.Localidade, endereco.Localidade);
+            Assert.AreEqual(dto.Endereco.Uf, endereco.Uf);
             Assert.AreEqual(endereco.ClienteId, cliente.Id);
 
         }
@@ -100,8 +94,8 @@ namespace CustomerManagement.Applicantion.Tests
             Assert.AreNotEqual(dto.Endereco.Numero, endereco.Numero);
             Assert.AreNotEqual(dto.Endereco.Bairro, endereco.Bairro);
             Assert.AreNotEqual(dto.Endereco.Complemento, endereco.Complemento);
-            Assert.AreNotEqual(dto.Endereco.Cidade, endereco.Cidade);
-            Assert.AreNotEqual(dto.Endereco.UfEstado, endereco.UfEstado);
+            Assert.AreNotEqual(dto.Endereco.Localidade, endereco.Localidade);
+            Assert.AreNotEqual(dto.Endereco.Uf, endereco.Uf);
             Assert.AreEqual(endereco.ClienteId, cliente.Id);
         }
 
@@ -180,8 +174,8 @@ namespace CustomerManagement.Applicantion.Tests
             Assert.AreEqual(dto.Endereco.Numero, endereco.Numero);
             Assert.AreEqual(dto.Endereco.Bairro, endereco.Bairro);
             Assert.AreEqual(dto.Endereco.Complemento, endereco.Complemento);
-            Assert.AreEqual(dto.Endereco.Cidade, endereco.Cidade);
-            Assert.AreEqual(dto.Endereco.UfEstado, endereco.UfEstado);
+            Assert.AreEqual(dto.Endereco.Localidade, endereco.Localidade);
+            Assert.AreEqual(dto.Endereco.Uf, endereco.Uf);
             Assert.AreEqual(endereco.ClienteId, cliente.Id);
         }
 

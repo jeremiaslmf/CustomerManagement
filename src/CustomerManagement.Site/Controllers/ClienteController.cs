@@ -1,7 +1,6 @@
 ﻿using CustomerManagement.Application.DTOs;
 using CustomerManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace CustomerManagement.WebApi.Controllers
 {

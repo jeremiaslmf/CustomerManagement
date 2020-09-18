@@ -59,6 +59,6 @@ namespace CustomerManagement.Application.Services
 
         private Endereco CriarEndereco(EnderecoDTO.Gravar dto)
             => new Endereco(dto.ClienteId, dto.Logradouro, dto.Numero, dto.Complemento,
-                dto.Bairro, dto.CEP, dto.Cidade, dto.UfEstado);
+                dto.Bairro, dto.CEP, dto.Localidade, dto.Uf);
     }
 }

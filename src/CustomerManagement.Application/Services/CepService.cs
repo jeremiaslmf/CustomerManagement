@@ -1,6 +1,5 @@
 ﻿using CustomerManagement.Application.DTOs;
 using CustomerManagement.Application.Interfaces;
-using CustomerManagement.Infrastructure.CrossCuting.Extensions;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;

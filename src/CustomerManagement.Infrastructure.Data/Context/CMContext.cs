@@ -9,16 +9,9 @@ namespace CustomerManagement.Infrastructure.Data.Context
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public CMContext(DbContextOptions<CMContext> options) : base(options)
         {
-            GetConnection(optionsBuilder);
-            //.UseLazyLoadingProxies()
-        }
-
-        protected virtual void GetConnection(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder
-                .UseMySQL("server=localhost;database=CustomerManagement;user=root;password=678150400");
+            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
