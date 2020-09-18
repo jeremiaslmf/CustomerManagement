@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Endereco } from '../endereco';
 import { Sexo } from '../sexo';
 import { HttpErrorResponse } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 import { PipeFormatDate } from 'src/app/app.component';
 
 @Component({
@@ -19,20 +18,21 @@ export class CadastroClienteComponent implements OnInit {
   public cliente: Cliente = new Cliente;
   public endereco: Endereco = new Endereco;
   public sexo: Sexo = new Sexo;
+  public dataNascimento: string;
 
   ngOnInit() : void {
     const clienteId = this.route.snapshot.paramMap.get('id');
     if (clienteId == null){
-      console.log("Cadastro Novo")
       return;
     }
     this.clienteService.obterPorClienteId(clienteId)
       .subscribe(
         retorno => {
-          this.cliente = retorno;
-          console.log(retorno);
-          this.endereco = this.cliente.endereco;
-          this.sexo.selectedValue = this.cliente.tipoSexo;
+           this.cliente = retorno;
+           this.dataNascimento = retorno.dataNascimento.toLocaleDateString();
+           console.log(this.dataNascimento);
+         this.endereco = this.cliente.endereco;
+           this.sexo.selectedValue = this.cliente.tipoSexo;
         },
         error => console.log(error)
       )
@@ -40,7 +40,7 @@ export class CadastroClienteComponent implements OnInit {
 
   salvarCadastro(){
     this.cliente.endereco = this.endereco;
-    console.log(this.cliente);
+    this.cliente.dataNascimento = new Date(this.dataNascimento);
     this.clienteService.salvarCadastro(this.cliente)
     .subscribe(
       () => {
@@ -63,6 +63,6 @@ export class CadastroClienteComponent implements OnInit {
   }
 
   formatDate(dataNascimento: string){
-    this.cliente.dataNascimento = this.pipeFormatDate.transform(dataNascimento);
+    this.dataNascimento = this.pipeFormatDate.transform(dataNascimento);
   }
 }

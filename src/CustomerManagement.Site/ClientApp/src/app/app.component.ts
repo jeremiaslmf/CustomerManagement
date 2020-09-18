@@ -16,10 +16,10 @@ export class PipeFormatDate implements PipeTransform {
   
   transform(date: string): string {
     var datePipe = new DatePipe('pt');
-    return datePipe.transform(this.parse(date), 'dd/MM/yyyy');
+    return datePipe.transform(this.format(date), 'dd/MM/yyyy');
   }
 
-  parse(value: any): string {
+  format(value: any): string {
     if ((typeof value === 'string') && value.length == 8) {
       const day = value.substr(0,2);
       const month = value.substr(2,2);
@@ -31,4 +31,19 @@ export class PipeFormatDate implements PipeTransform {
     }
     return "";
   }
+
+  // parseTodate(value: string) : Date {
+  //   if ((typeof value === 'string') && value.length == 8) {
+  //     const day = value.substr(0,2);
+  //     const month = value.substr(2,2);
+  //     const year = value.substr(4,8);
+  //     var collectionDate = '2002-04-26T09:00:00';
+  //     var date = new Date((year+"/"+month+"/"+day));
+  //     return new Date(year, month, day);
+
+  //   } else if ((typeof value === 'string') && (value.indexOf('/') > -1)) {
+  //     return value.split('/').reverse().join('/');
+  //   }
+  //   return new Date();
+  //}
 }

@@ -61,5 +61,15 @@ namespace CustomerManagement.Application.DTOs
             public string Telefone { get; set; }
             public EnderecoDTO.Dados Endereco { get; set; }
         }
+
+        public class GravarRetorno
+        {
+            public Guid Id { get; private set; }
+
+            public GravarRetorno(Guid id)
+            {
+                Id = id;
+            }
+        }
     }
 }

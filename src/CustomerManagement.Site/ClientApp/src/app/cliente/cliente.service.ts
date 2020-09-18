@@ -15,17 +15,7 @@ export class ClienteService {
 
   salvarCadastro(cliente : Cliente){
     
-    return this.http.post(this.UrlService + "api/cliente/gravar", cliente);
-    // {
-    //   "id": "",
-    //   "nome": dados.nome,
-    //   "sobrenome": dados.sobrenome,
-    //   "dataNascimento" : dados.dataNascimento,
-    //   "tipoSexo": dados.tipoSexo,
-    //   "email": dados.email,
-    //   "telefone": dados.telefone,
-    //   "endereco": dados.endereco
-    // });
+    return this.http.post(this.UrlService + "api/cliente/gravar", cliente);    
   }
 
   obterPorClienteId(id : string) : Observable<Cliente> {
