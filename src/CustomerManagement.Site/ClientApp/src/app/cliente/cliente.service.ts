@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from "./cliente"
 import { Endereco } from './endereco';
+
+var httpOptions = {headers: new HttpHeaders({"Content-Type" : "application/json"})}
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +17,15 @@ export class ClienteService {
   protected apiCliente: string = this.urlAPI + "api/cliente/";
   protected apiCep: string = this.urlAPI + "api/cep/";
 
-  create(cliente : Cliente) : Observable<Object> {
-    let retorno = this.http.post<Cliente>(this.apiCliente, cliente);
+  create(cliente : Cliente) : Observable<Cliente> {
+    console.log("passou")
+    let retorno = this.http.post<Cliente>(this.apiCliente, cliente, httpOptions);
     console.log(retorno);
     return retorno; 
   }
 
-  update(cliente : Cliente) : Observable<Object> {
-    let retorno = this.http.put<Cliente>(this.apiCliente + cliente.id, cliente);
-    return retorno;
+  update(cliente : Cliente) : Observable<Cliente> {
+    return this.http.put<Cliente>(this.apiCliente + cliente.id, cliente, httpOptions);
   }
  
   delete(id: string) : Observable<Object>{

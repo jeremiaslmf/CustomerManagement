@@ -31,7 +31,6 @@ export class ListaClienteComponent implements OnInit {
     .subscribe(
       retorno => {
         this.clientes = this.clientes.filter(x => x.id != id);
-        console.log(retorno);
       },
       error => {
         alert(":( Por algum motivo, o cliente não pode ser excluído!");

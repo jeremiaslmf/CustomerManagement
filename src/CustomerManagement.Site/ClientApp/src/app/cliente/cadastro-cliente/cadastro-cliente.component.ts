@@ -52,10 +52,9 @@ export class CadastroClienteComponent implements OnInit {
     this.cliente.dataNascimento = this.stringToDate(this.dataNascimento, "dd/MM/yyyy", "/");
     
     if (this.isCadastroNovo){
-      console.log("Create");
       this.clienteService.create(this.cliente)
         .subscribe(
-          () => {
+          () => { 
             alert(this.mensagemSucesso);
           },
           (response: HttpErrorResponse) => {
@@ -64,7 +63,6 @@ export class CadastroClienteComponent implements OnInit {
         );
     }
     else {
-      console.log("Update");
       this.clienteService.update(this.cliente)
         .subscribe(
           () => {
@@ -75,7 +73,6 @@ export class CadastroClienteComponent implements OnInit {
           }
         );
     }
-    
   }
 
   buscarCep(cep: string){

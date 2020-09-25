@@ -2,6 +2,7 @@
 using CustomerManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace CustomerManagement.WebApi.Controllers
 {
@@ -17,18 +18,19 @@ namespace CustomerManagement.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] ClienteDTO.Gravar dto)
+        public async Task<IActionResult> Create([FromBody] ClienteDTO.Gravar dto)
         {
-            var retorno = _clienteService.Criar(dto);
+            var retorno = await _clienteService.Criar(dto);
             if (Guid.Empty.Equals(retorno.Id))
                 return BadRequest();
 
-            return CreatedAtRoute("Get", new { Id = retorno.Id }, retorno);
+            dto.Id = retorno.Id;
+            return CreatedAtRoute("Get", new { Id = retorno.Id }, dto);
         }
 
         [HttpPut]
-        [Route("{id}")]
-        public IActionResult Update(Guid id, [FromBody] ClienteDTO.Gravar dto)
+        [Route("{Id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] ClienteDTO.Gravar dto)
         {
             if (Guid.Empty.Equals(id))
                 return BadRequest();
@@ -36,19 +38,19 @@ namespace CustomerManagement.WebApi.Controllers
             if (!_clienteService.IsClienteExists(dto.Id))
                 return NotFound();
             
-            _clienteService.Atualizar(dto);
+            await _clienteService.Atualizar(dto);
 
             return NoContent();
         }
 
         [HttpDelete]
         [Route("{Id}")]
-        public IActionResult Delete([FromRoute] ClienteDTO.Excluir dto)
+        public async Task<IActionResult> Delete([FromRoute] ClienteDTO.Excluir dto)
         {
             if (!_clienteService.IsClienteExists(dto.Id))
                 return NotFound();
 
-            _clienteService.Exlcuir(dto);
+            await _clienteService.Exlcuir(dto);
             return NoContent();
         }
 

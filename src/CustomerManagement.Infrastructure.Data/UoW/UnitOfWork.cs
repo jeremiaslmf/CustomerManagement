@@ -1,6 +1,7 @@
 ﻿using CustomerManagement.Domain.Interfaces;
 using CustomerManagement.Infrastructure.Data.Context;
 using CustomerManagement.Infrastructure.Data.Repositories;
+using System.Threading.Tasks;
 
 namespace CustomerManagement.Infrastructure.Data.Uow
 {
@@ -23,6 +24,8 @@ namespace CustomerManagement.Infrastructure.Data.Uow
         { get => _enderecoRepository ??= new EnderecoRepository(_context); }
 
         public bool SaveChanges() => _context.SaveChanges() > 0;
+
+        public async Task<bool> SaveChangesAsync() => await _context.SaveChangesAsync() > 0;
 
         public void Dispose() => _context.Dispose();
     }

@@ -28,6 +28,18 @@ namespace CustomerManagement.Site
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .Build();
+                });
+            });
+
             services.AddDbContext<CMContext>(opt =>
                 opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -54,6 +66,7 @@ namespace CustomerManagement.Site
                 app.UseSpaStaticFiles();
             }
 
+            app.UseCors("EnableCORS");
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

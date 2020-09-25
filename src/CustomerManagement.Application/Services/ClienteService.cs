@@ -7,6 +7,7 @@ using Nelibur.ObjectMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CustomerManagement.Application.Services
 {
@@ -14,25 +15,30 @@ namespace CustomerManagement.Application.Services
     {
         public ClienteService(IUnitOfWork iuow) : base(iuow) { }
 
-        public ClienteDTO.GravarRetorno Criar(ClienteDTO.Gravar dto)
+        public async Task<ClienteDTO.GravarRetorno> Criar(ClienteDTO.Gravar dto)
         {
-            return CriarCliente(dto);
+            var cliente = new Cliente(dto.Nome, dto.Sobrenome, dto.DataNascimento,
+                GetCompatibilidadeSexo(dto.TipoSexo), dto.Email, dto.Telefone);
+            SetEnderecoCliente(dto.Endereco, cliente);
+            UnitOfWork.ClienteRepository.Add(cliente);
+            await UnitOfWork.SaveChangesAsync();
+            return new ClienteDTO.GravarRetorno(cliente.Id);
         }
 
-        public void Atualizar(ClienteDTO.Gravar dto)
+        public async Task Atualizar(ClienteDTO.Gravar dto)
         {
             var cliente = UnitOfWork.ClienteRepository.GetById(dto.Id);
             var endereco = UnitOfWork.EnderecoRepository.GetAllByClienteId(dto.Id).FirstOrDefault();
             cliente.AdicionarEndereco(endereco);
             UnitOfWork.ClienteRepository.Update(cliente);
-            UnitOfWork.SaveChanges();         
+            await UnitOfWork.SaveChangesAsync();         
         }
 
-        public void Exlcuir(ClienteDTO.Excluir dto)
+        public async Task Exlcuir(ClienteDTO.Excluir dto)
         {
             var cliente = GetCliente(dto.Id);
             UnitOfWork.ClienteRepository.Delete(cliente);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
 
         public ClienteDTO.Retorno GetById(Guid id)
@@ -57,16 +63,6 @@ namespace CustomerManagement.Application.Services
         private Cliente GetCliente(Guid id)
             => UnitOfWork.ClienteRepository.GetById(id)
                 ?? throw new Exception("Cliente não encontrado!");
-
-        private ClienteDTO.GravarRetorno CriarCliente(ClienteDTO.Gravar dto)
-        {
-            var cliente = new Cliente(dto.Nome, dto.Sobrenome, dto.DataNascimento,
-                GetCompatibilidadeSexo(dto.TipoSexo), dto.Email, dto.Telefone);
-            SetEnderecoCliente(dto.Endereco, cliente);
-            UnitOfWork.ClienteRepository.Add(cliente);
-            UnitOfWork.SaveChanges();
-            return new ClienteDTO.GravarRetorno(cliente.Id);
-        }
 
         private TipoSexo GetCompatibilidadeSexo(string tipoSexo)
             => TipoSexo.Masculino.ToString().Equals(tipoSexo)
