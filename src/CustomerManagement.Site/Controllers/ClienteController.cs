@@ -17,41 +17,57 @@ namespace CustomerManagement.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("gravar")]
-        public IActionResult Gravar([FromBody] ClienteDTO.Gravar dto)
+        public IActionResult Create([FromBody] ClienteDTO.Gravar dto)
         {
-            var retorno = _clienteService.Gravar(dto);
+            var retorno = _clienteService.Criar(dto);
             if (Guid.Empty.Equals(retorno.Id))
                 return BadRequest();
 
-            return Ok(retorno);
+            return CreatedAtRoute("Get", new { Id = retorno.Id }, retorno);
         }
 
-        [HttpPost]
-        [Route("excluir")]
-        public IActionResult Exlcuir([FromBody] ClienteDTO.Excluir dto)
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update(Guid id, [FromBody] ClienteDTO.Gravar dto)
         {
+            if (Guid.Empty.Equals(id))
+                return BadRequest();
+
+            if (!_clienteService.IsClienteExists(dto.Id))
+                return NotFound();
+            
+            _clienteService.Atualizar(dto);
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("{Id}")]
+        public IActionResult Delete([FromRoute] ClienteDTO.Excluir dto)
+        {
+            if (!_clienteService.IsClienteExists(dto.Id))
+                return NotFound();
+
             _clienteService.Exlcuir(dto);
-            return Ok();
+            return NoContent();
         }
 
         [HttpGet]
         [Route("{Id}")]
-        public IActionResult ObterPorId([FromRoute] ClienteDTO.ObterPorId dto)
+        public IActionResult Get([FromRoute] ClienteDTO.ObterPorId dto)
         {
             var retorno = _clienteService.GetById(dto.Id);
             if (Guid.Empty.Equals(retorno.Id))
-                return BadRequest();
+                return NotFound();
             return Ok(retorno);
         }
 
         [HttpGet]
-        [Route("obterTodos")]
-        public IActionResult ObterTodos()
+        public IActionResult Get()
         {
             var retorno = _clienteService.GetAll();
             if (retorno.Count == 0)
-                return BadRequest();
+                return NotFound();
             return Ok(retorno);
         }
     }

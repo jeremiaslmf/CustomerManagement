@@ -34,7 +34,7 @@ namespace CustomerManagement.Applicantion.Tests
             var dto = GetCliente(genero, TipoSexo.Feminino, new DateTime(2000, 05, 01));
             dto.Endereco = GetEndereco(dto, "001");
 
-            var retorno = clienteService.Gravar(dto);
+            var retorno = clienteService.Criar(dto);
             var cliente = iuow.ClienteRepository.GetAll().FirstOrDefault();
 
             Assert.IsNotNull(dto.Id);
@@ -72,12 +72,12 @@ namespace CustomerManagement.Applicantion.Tests
             dto.Endereco = GetEndereco(dto, "001");
 
             //Act
-            var retorno = clienteService.Gravar(dto);
+            var retorno = clienteService.Criar(dto);
             var cliente = iuow.ClienteRepository.GetAll().FirstOrDefault();
 
             dto = GetCliente(genero, TipoSexo.Outro, new DateTime(1190, 10, 02));
             dto.Endereco = GetEndereco(dto, "555", "87200000", "PR");
-            retorno = clienteService.Gravar(dto);
+            retorno = clienteService.Criar(dto);
 
             // Assert
             Assert.IsNotNull(dto.Id);
@@ -114,7 +114,7 @@ namespace CustomerManagement.Applicantion.Tests
             dto.Endereco = GetEndereco(dto, "001");
 
             // Act
-            clienteService.Gravar(dto);
+            clienteService.Criar(dto);
             var clienteId1 = iuow.ClienteRepository.GetAll().FirstOrDefault().Id;
             clienteService.Exlcuir(new ClienteDTO.Excluir(clienteId1));
 
@@ -155,7 +155,7 @@ namespace CustomerManagement.Applicantion.Tests
             dto.Endereco = GetEndereco(dto, "444");
 
             // Act
-            clienteService.Gravar(dto);
+            clienteService.Criar(dto);
             var clienteId = iuow.ClienteRepository.GetAll().FirstOrDefault().Id;
             var cliente = clienteService.GetById(clienteId);
 

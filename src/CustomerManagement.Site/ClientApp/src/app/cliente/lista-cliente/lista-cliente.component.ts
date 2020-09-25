@@ -12,7 +12,7 @@ export class ListaClienteComponent implements OnInit {
   constructor(private clienteService : ClienteService) { }
 
   ngOnInit(): void {
-    this.clienteService.obterTodos()
+    this.clienteService.getAll()
       .subscribe(
         retorno => {
           this.clientes = retorno;
@@ -27,7 +27,7 @@ export class ListaClienteComponent implements OnInit {
       return;
     }
 
-    this.clienteService.excluirCliente(id)
+    this.clienteService.delete(id)
     .subscribe(
       retorno => {
         this.clientes = this.clientes.filter(x => x.id != id);

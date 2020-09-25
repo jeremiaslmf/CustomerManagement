@@ -11,8 +11,6 @@ namespace CustomerManagement.Application.DTOs
 
         public class Retorno
         {
-            [JsonPropertyName("cep")]
-            public string CEP { get; set; }
             [JsonPropertyName("logradouro")]
             public string Logradouro { get; set; }
             [JsonPropertyName("complemento")]

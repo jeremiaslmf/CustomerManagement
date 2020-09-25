@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Endereco } from '../endereco';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PipeFormatDate } from 'src/app/app.component';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -12,6 +13,10 @@ import { PipeFormatDate } from 'src/app/app.component';
 })
 export class CadastroClienteComponent implements OnInit {
   
+  public mensagemSucesso: string = ":) Operação realizada com sucesso!";
+  public mensagemErro: string = ":( Houve algum problema ao executar a operação!";
+  
+  isCadastroNovo: boolean = false;
   cliente: Cliente = new Cliente;
   endereco: Endereco = new Endereco;
   tiposSexo = [
@@ -20,23 +25,23 @@ export class CadastroClienteComponent implements OnInit {
     "Outro"
   ];
   dataNascimento: string;
-  selectedValue: string;
   
   constructor(private route: ActivatedRoute, private clienteService: ClienteService, private pipeFormatDate: PipeFormatDate) { }
 
   ngOnInit() : void {
     const clienteId = this.route.snapshot.paramMap.get('id');
+    this.isCadastroNovo = clienteId == null;
     if (clienteId == null){
       return;
     }
-    this.clienteService.obterPorClienteId(clienteId)
+    
+    this.clienteService.getById(clienteId)
+    this.clienteService.getById(clienteId)
       .subscribe(
         retorno => {
            this.cliente = retorno;
            this.dataNascimento = new Date(retorno.dataNascimento).toLocaleString('pt').substring(0,10)
            this.endereco = this.cliente.endereco;
-           this.selectedValue = this.cliente.tipoSexo;
-           console.log(this.selectedValue);
         },
         error => console.log(error)
       )
@@ -45,22 +50,45 @@ export class CadastroClienteComponent implements OnInit {
   salvarCadastro(){
     this.cliente.endereco = this.endereco;
     this.cliente.dataNascimento = this.stringToDate(this.dataNascimento, "dd/MM/yyyy", "/");
-    this.clienteService.salvarCadastro(this.cliente)
-    .subscribe(
-      () => {
-        alert(":) Operação realizada com sucesso!");
-      },
-      (response: HttpErrorResponse) => {
-        alert(":( Houve algum problema ao executar a operação!");
-      }
-    );
+    
+    if (this.isCadastroNovo){
+      console.log("Create");
+      this.clienteService.create(this.cliente)
+        .subscribe(
+          () => {
+            alert(this.mensagemSucesso);
+          },
+          (response: HttpErrorResponse) => {
+            alert(this.mensagemErro);
+          }
+        );
+    }
+    else {
+      console.log("Update");
+      this.clienteService.update(this.cliente)
+        .subscribe(
+          () => {
+            alert(this.mensagemSucesso);
+          },
+          (response: HttpErrorResponse) => {
+            alert(this.mensagemErro);
+          }
+        );
+    }
+    
   }
 
   buscarCep(cep: string){
     this.clienteService.buscarCep(cep)
       .subscribe(
         retorno => {
-          this.endereco = retorno;
+          this.endereco.logradouro = retorno.logradouro;
+          this.endereco.bairro = retorno.bairro;
+          if (retorno.complemento == null){
+            this.endereco.complemento = retorno.complemento;
+          }
+          this.endereco.localidade = retorno.localidade;
+          this.endereco.uf = retorno.uf;
         },
         error => console.log(error)
       );
