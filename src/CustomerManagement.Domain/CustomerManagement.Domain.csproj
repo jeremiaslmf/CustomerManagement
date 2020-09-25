@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CustomerManagement.Domain.Core\CustomerManagement.Domain.Core.csproj" />
+    <ProjectReference Include="..\CustomerManagement.Infrastructure.CrossCuting.Extensions\CustomerManagement.Infrastructure.CrossCuting.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

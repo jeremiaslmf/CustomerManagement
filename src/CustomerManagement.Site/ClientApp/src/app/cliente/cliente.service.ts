@@ -13,8 +13,8 @@ export class ClienteService {
   
   protected UrlService: string = "https://localhost:44389/";
 
-  salvarCadastro(cliente : Cliente){
-    
+  salvarCadastro(cliente : Cliente) : Observable<Object> {
+    console.log(cliente);
     return this.http.post(this.UrlService + "api/cliente/gravar", cliente);    
   }
 

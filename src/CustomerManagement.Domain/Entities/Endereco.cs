@@ -1,6 +1,8 @@
-﻿using Eventos.IO.Domain.Core.Models;
+﻿using CustomerManagement.Infrastructure.CrossCuting.Extensions;
+using Eventos.IO.Domain.Core.Models;
 using FluentValidation;
 using System;
+using System.Text.RegularExpressions;
 
 namespace CustomerManagement.Domain.Entities
 {
@@ -15,7 +17,7 @@ namespace CustomerManagement.Domain.Entities
             Numero = numero;
             Complemento = complemento;
             Bairro = bairro;
-            CEP = cep;
+            SetCep(cep);
             Localidade = cidade;
             Uf = ufEstado;
         }
@@ -32,6 +34,9 @@ namespace CustomerManagement.Domain.Entities
 
         public Guid ClienteId { get; private set; }
         public virtual Cliente Cliente { get; private set; }
+
+        public string SetCep(string cep)
+            => CEP = cep.RemoveSpecialCharacters();
 
         public override bool IsValid()
         {
