@@ -2,112 +2,120 @@
 
 <form #clienteForm="ngForm">
     <div class="row">
-        <div class="col-md-4 multi-horizontal" data-for="nome">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Nome</label>
+                <label class="form-control-label mbr-fonts-style display-7">Nome</label>
                 <input type="text" class="form-control" name="nome" placeholder="informe o nome"
-                    [(ngModel)]="cliente.nome">
+                    [(ngModel)]="cliente.nome" required="true"> 
             </div>
         </div>
 
-        <div class="col-md-4 multi-horizontal" data-for="sobrenome">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Sobrenome</label>
+                <label class="form-control-label mbr-fonts-style display-7">Sobrenome</label>
                 <input type="text" class="form-control" name="sobrenome" placeholder="informe o sobrenome"
-                    [(ngModel)]="cliente.sobrenome" required="">
+                    [(ngModel)]="cliente.sobrenome" required="true">
             </div>
         </div>
 
-        <div class="col-md-4 multi-horizontal" data-for="dataNascimento">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Data Nascimento</label>
-                <input type="text" class="form-control" name="dataNascimento" placeholder="informe a data de nascimento"
-                    [(ngModel)]="cliente.dataNascimento" 
-                    (blur)="formatDate(cliente.dataNascimento)" required="">
+                <label class="form-control-label mbr-fonts-style display-7">Data Nascimento</label>
+                <input type="text" class="form-control" name="dataNascimento" placeholder="  /  /    "
+                    [(ngModel)]="dataNascimento"
+                    (blur)="formatDate(dataNascimento)" >
             </div>
-            <!-- {{cliente.dataNascimento | date: 'dd/MM/yyyy'}} -->
         </div>
 
         <div class="form-group col-md-4">
-            <label for="inputSexo">Sexo</label>
-            <select [(ngModel)]="sexo.selectedValue" class="form-control">
-                <option selected></option>
-                <option *ngFor="let s of sexo.tipos" [ngValue]="s">{{s.name}}</option>
+            <label class="form-control-label mbr-fonts-style display-7">Sexo</label>
+            <select name= "tipoSexo" class="form-control"  
+                [(ngModel)]="cliente.tipoSexo"                 >
+                <option *ngFor="let s of tiposSexo" [ngValue]="s">{{s}}</option>
             </select>
         </div>
 
-        <div class="col-md-4 multi-horizontal" data-for="email">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="email-form1-2w">E-mail</label>
+                <label class="form-control-label mbr-fonts-style display-7">E-mail</label>
                 <input type="email" class="form-control" name="email" placeholder="informe o e-mail"
-                    [(ngModel)]="cliente.email" required="">
+                    [(ngModel)]="cliente.email" >
             </div>
         </div>
-        <div class="col-md-4 multi-horizontal" data-for="telefone">
+
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Telefone</label>
-                <input type="tel" class="form-control" name="telefone" placeholder="informe o telefone"
-                    [(ngModel)]="cliente.telefone">
+                <label for="telefone" class="form-control-label mbr-fonts-style display-7">Telefone</label>
+                <input type="tel" class="form-control" name="telefone" placeholder="(00) 00000-0000"
+                    [(ngModel)]="cliente.telefone" mask="(00) 00000-0000">
             </div>
-        </div>
+        </div> 
     </div>
 
 </form>
 
-<form>
+<form #ederecoForm="ngForm">
     <div class="row row-sm-offset">
-        <div class="col-md-4 multi-horizontal" data-for="cep">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">CEP</label>
+                <label class="form-control-label mbr-fonts-style display-7">CEP</label>
                 <input type="text" class="form-control" name="cep" placeholder="informe o CEP"
-                    [(ngModel)]="endereco.cep" required=""
+                    [(ngModel)]="endereco.cep" 
                     (blur)="buscarCep(endereco.cep)">
             </div>
         </div>
-        <div class="col-md-4 multi-horizontal" data-for="logradouro">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="name-form1-2w">Logradouro</label>
+                <label class="form-control-label mbr-fonts-style display-7">Logradouro</label>
                 <input type="text" class="form-control" name="logradouro" placeholder="informe o logradouro"
-                    [(ngModel)]="endereco.logradouro" required="">
+                    [(ngModel)]="endereco.logradouro" >
             </div>
         </div>
-        <div class="col-md-4 multi-horizontal" data-for="numero">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Número</label>
+                <label class="form-control-label mbr-fonts-style display-7">Número</label>
                 <input type="tel" class="form-control" name="numero" placeholder="informe o número"
                     [(ngModel)]="endereco.numero">
             </div>
         </div>
-        <div class="col-md-4 multi-horizontal" data-for="bairro">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Bairro</label>
+                <label class="form-control-label mbr-fonts-style display-7">Bairro</label>
                 <input type="tel" class="form-control" name="bairro" placeholder="informe o bairro"
-                    [(ngModel)]="endereco.bairro" required="">
+                    [(ngModel)]="endereco.bairro" >
             </div>
         </div>
-        <div class="col-md-4 multi-horizontal" data-for="complemento">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Complemento</label>
+                <label class="form-control-label mbr-fonts-style display-7">Complemento</label>
                 <input type="tel" class="form-control" name="complemento" placeholder="informe o complemento"
                     [(ngModel)]="endereco.complemento">
             </div>
         </div>
-        <div class="col-md-4 multi-horizontal" data-for="cidade">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">Cidade</label>
+                <label class="form-control-label mbr-fonts-style display-7">Localidade</label>
                 <input type="tel" class="form-control"  [disabled]="true" name="cidade" [(ngModel)]="endereco.localidade">
             </div>
         </div>
-        <div class="col-md-4 multi-horizontal" data-for="ufEstado">
+        <div class="col-md-4 multi-horizontal">
             <div class="form-group">
-                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-2w">UF</label>
-                <input type="tel" class="form-control" [disabled]="true" name="ufEstado" [(ngModel)]="endereco.uf">
+                <label class="form-control-label mbr-fonts-style display-7">UF</label>
+                <input type="tel" class="form-control" [disabled]="true" name="ufEstado" 
+                    [(ngModel)]="endereco.uf">
             </div>
         </div>
     </div>
 
     <span class="input-group-btn">
-        <button type="submit" class="btn btn-success" (click)="salvarCadastro(cliente, endereco)" [disabled]="!clienteForm.form.valid" >Salvar</button>&nbsp;
-        <button type="button" class="btn btn-basic" [routerLink]="['/lista-cliente']">Voltar</button>
+        <button type="submit" class="btn btn-success" 
+            (click)="salvarCadastro(cliente, endereco)" 
+            [disabled]="!clienteForm.form.valid" 
+            >Salvar
+        </button>&nbsp;
+        <button type="button" class="btn btn-basic" 
+            [routerLink]="['/lista-cliente']"
+            >Voltar
+        </button>
     </span>
 </form>

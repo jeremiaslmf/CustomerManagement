@@ -1,6 +1,8 @@
-﻿using Eventos.IO.Domain.Core.Models;
+﻿using CustomerManagement.Infrastructure.CrossCuting.Extensions;
+using Eventos.IO.Domain.Core.Models;
 using FluentValidation;
 using System;
+using System.Text.RegularExpressions;
 
 namespace CustomerManagement.Domain.Entities
 {
@@ -15,9 +17,9 @@ namespace CustomerManagement.Domain.Entities
             Numero = numero;
             Complemento = complemento;
             Bairro = bairro;
-            CEP = cep;
-            Cidade = cidade;
-            UfEstado = ufEstado;
+            SetCep(cep);
+            Localidade = cidade;
+            Uf = ufEstado;
         }
 
         protected Endereco() { }
@@ -27,11 +29,14 @@ namespace CustomerManagement.Domain.Entities
         public string Complemento { get; private set; }
         public string Bairro { get; private set; }
         public string CEP { get; private set; }
-        public string Cidade { get; private set; }
-        public string UfEstado { get; private set; }
+        public string Localidade { get; private set; }
+        public string Uf { get; private set; }
 
         public Guid ClienteId { get; private set; }
         public virtual Cliente Cliente { get; private set; }
+
+        public string SetCep(string cep)
+            => CEP = cep.RemoveSpecialCharacters();
 
         public override bool IsValid()
         {
@@ -73,14 +78,14 @@ namespace CustomerManagement.Domain.Entities
 
         private void ValidarCidade()
         {
-            RuleFor(x => x.Cidade)
+            RuleFor(x => x.Localidade)
                 .NotEmpty().WithMessage("O campo Cidade é obrigatório")
                 .Length(2, 150).WithMessage("Deve conter entre 2 e 150 caracteres");
         }
 
         private void ValidarEstado()
         {
-            RuleFor(x => x.UfEstado)
+            RuleFor(x => x.Uf)
                 .NotEmpty().WithMessage("O campo Estado é obrigatório")
                 .Length(2, 150).WithMessage("Deve conter entre 2 e 150 caracteres");
         }

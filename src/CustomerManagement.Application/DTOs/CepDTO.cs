@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace CustomerManagement.Application.DTOs
 {
@@ -22,9 +19,6 @@ namespace CustomerManagement.Application.DTOs
             public string Complemento { get; set; }
             [JsonPropertyName("bairro")]
             public string Bairro { get; set; }
-            
-
-
             [JsonPropertyName("localidade")]
             public string Localidade { get; set; }
             [JsonPropertyName("uf")]

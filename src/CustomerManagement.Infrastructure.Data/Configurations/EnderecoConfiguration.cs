@@ -10,9 +10,8 @@ namespace CustomerManagement.Infrastructure.Data.Mappings
         {
             b.ToTable("Enderecos");
 
-            b.Property(c => c.Id)
-               .HasColumnType("CHAR(36)")
-               .ValueGeneratedOnAdd();
+            b.Property(c => c.Id).HasColumnType("CHAR(36)");
+            b.HasKey(c => c.Id);
 
             b.Property(c => c.CEP)
                 .HasColumnType("CHAR(8)")
@@ -35,11 +34,11 @@ namespace CustomerManagement.Infrastructure.Data.Mappings
             b.Property(c => c.Complemento)
                  .HasMaxLength(150);
 
-            b.Property(c => c.Cidade)
+            b.Property(c => c.Localidade)
                  .HasMaxLength(50)
                 .IsRequired();
 
-            b.Property(c => c.UfEstado)
+            b.Property(c => c.Uf)
                 .HasColumnName("UF")
                 .HasColumnType("CHAR(2)")
                 .HasMaxLength(2)
@@ -47,7 +46,9 @@ namespace CustomerManagement.Infrastructure.Data.Mappings
 
             b.HasOne<Cliente>(c => c.Cliente)
                 .WithMany(e => e.Enderecos)
-                .HasForeignKey(c => c.ClienteId);
+                .HasForeignKey(c => c.ClienteId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
 
             b.Ignore(e => e.ValidationResult);
             b.Ignore(e => e.CascadeMode);

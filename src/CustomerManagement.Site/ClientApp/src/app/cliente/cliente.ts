@@ -4,7 +4,7 @@ export class Cliente {
     id: string;
     nome: string;
     sobrenome: string;
-    dataNascimento : string;
+    dataNascimento : Date;
     tipoSexo: string;
     email: string;
     telefone: string;

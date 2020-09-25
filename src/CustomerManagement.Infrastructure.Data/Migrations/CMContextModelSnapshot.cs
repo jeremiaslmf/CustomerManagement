@@ -32,16 +32,16 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnType("varchar(20)")
                         .HasMaxLength(20);
 
-                    b.Property<string>("SobreNome")
+                    b.Property<string>("Sobrenome")
                         .IsRequired()
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("Telefone")
-                        .HasColumnType("VARCHAR(11)");
+                        .HasColumnType("CHAR(11)");
 
                     b.Property<int>("TipoSexo")
                         .HasColumnType("int");
@@ -70,11 +70,6 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                         .HasColumnType("CHAR(8)")
                         .HasMaxLength(8);
 
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50);
-
                     b.Property<string>("ClienteId")
                         .IsRequired()
                         .HasColumnType("CHAR(36)");
@@ -82,6 +77,11 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                     b.Property<string>("Complemento")
                         .HasColumnType("varchar(150)")
                         .HasMaxLength(150);
+
+                    b.Property<string>("Localidade")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Logradouro")
                         .IsRequired()
@@ -93,7 +93,7 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                         .HasColumnType("VARCHAR(20)")
                         .HasMaxLength(20);
 
-                    b.Property<string>("UfEstado")
+                    b.Property<string>("Uf")
                         .IsRequired()
                         .HasColumnName("UF")
                         .HasColumnType("CHAR(2)")

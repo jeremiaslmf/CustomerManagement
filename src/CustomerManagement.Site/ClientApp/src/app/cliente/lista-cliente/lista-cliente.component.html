@@ -8,17 +8,15 @@
   <thead>
     <tr>
       <th>Nome</th>
-      <th>Sobre Nome</th>
       <th>E-mail</th>
       <th>Telefone</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let cliente of clientes">
-      <td>{{ cliente.nome }}</td>
-      <td>{{ cliente.sobrenome }}</td>
+      <td>{{ cliente.nome + " " + cliente.sobrenome }}</td>
       <td>{{ cliente.email }}</td>
-      <td>{{ cliente.telefone }}</td>
+      <td>{{ cliente.telefone | mask: '(00) 0000-0000'}}</td>
       <div>
         <td><button type="button" class="btn btn-success" [routerLink]="['/cadastro-cliente', cliente.id]"><i class="fa fa-pencil"></i></button></td>
         <td><button type="submit" class="btn btn-danger" (click)="excluirCliente(cliente.id)"><i class="fa fa-trash"></i></button></td>

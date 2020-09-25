@@ -20,10 +20,11 @@ namespace CustomerManagement.WebApi.Controllers
         [Route("gravar")]
         public IActionResult Gravar([FromBody] ClienteDTO.Gravar dto)
         {
-            if (!_clienteService.Gravar(dto))
+            var retorno = _clienteService.Gravar(dto);
+            if (Guid.Empty.Equals(retorno.Id))
                 return BadRequest();
 
-            return Ok();
+            return Ok(retorno);
         }
 
         [HttpPost]
@@ -38,14 +39,20 @@ namespace CustomerManagement.WebApi.Controllers
         [Route("{Id}")]
         public IActionResult ObterPorId([FromRoute] ClienteDTO.ObterPorId dto)
         {
-            return Ok(_clienteService.GetById(dto.Id));
+            var retorno = _clienteService.GetById(dto.Id);
+            if (Guid.Empty.Equals(retorno.Id))
+                return BadRequest();
+            return Ok(retorno);
         }
 
         [HttpGet]
         [Route("obterTodos")]
         public IActionResult ObterTodos()
         {
-            return Ok(_clienteService.GetAll());
+            var retorno = _clienteService.GetAll();
+            if (retorno.Count == 0)
+                return BadRequest();
+            return Ok(retorno);
         }
     }
 }

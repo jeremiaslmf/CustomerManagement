@@ -13,19 +13,9 @@ export class ClienteService {
   
   protected UrlService: string = "https://localhost:44389/";
 
-  salvarCadastro(cliente : Cliente){
-    
-    return this.http.post(this.UrlService + "api/cliente/gravar", cliente);
-    // {
-    //   "id": "",
-    //   "nome": dados.nome,
-    //   "sobrenome": dados.sobrenome,
-    //   "dataNascimento" : dados.dataNascimento,
-    //   "tipoSexo": dados.tipoSexo,
-    //   "email": dados.email,
-    //   "telefone": dados.telefone,
-    //   "endereco": dados.endereco
-    // });
+  salvarCadastro(cliente : Cliente) : Observable<Object> {
+    console.log(cliente);
+    return this.http.post(this.UrlService + "api/cliente/gravar", cliente);    
   }
 
   obterPorClienteId(id : string) : Observable<Cliente> {

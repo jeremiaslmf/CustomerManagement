@@ -1,5 +1,4 @@
-﻿using CustomerManagement.Application.Models;
-using System;
+﻿using System;
 
 namespace CustomerManagement.Application.DTOs
 {
@@ -61,6 +60,16 @@ namespace CustomerManagement.Application.DTOs
             public string Email { get; set; }
             public string Telefone { get; set; }
             public EnderecoDTO.Dados Endereco { get; set; }
+        }
+
+        public class GravarRetorno
+        {
+            public Guid Id { get; private set; }
+
+            public GravarRetorno(Guid id)
+            {
+                Id = id;
+            }
         }
     }
 }

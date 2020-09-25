@@ -16,10 +16,10 @@ export class PipeFormatDate implements PipeTransform {
   
   transform(date: string): string {
     var datePipe = new DatePipe('pt');
-    return datePipe.transform(this.parse(date), 'dd/MM/yyyy');
+    return datePipe.transform(this.format(date), 'dd/MM/yyyy');
   }
 
-  parse(value: any): string {
+  format(value: any): string {
     if ((typeof value === 'string') && value.length == 8) {
       const day = value.substr(0,2);
       const month = value.substr(2,2);

@@ -25,8 +25,8 @@ namespace CustomerManagement.Application.DTOs
             public string Complemento { get; set; }
             public string Bairro { get; set; }
             public string CEP { get; set; }
-            public string Cidade { get; set; }
-            public string UfEstado { get; set; }
+            public string Localidade { get; set; }
+            public string Uf { get; set; }
 
             public Dados(string logradouro, string numero, string complemento, 
                 string bairro, string cep, string cidade, string ufEstado)
@@ -36,8 +36,8 @@ namespace CustomerManagement.Application.DTOs
                 Complemento = complemento;
                 Bairro = bairro;
                 CEP = cep;
-                Cidade = cidade;
-                UfEstado = ufEstado;
+                Localidade = cidade;
+                Uf = ufEstado;
             }
 
             public Dados() { }

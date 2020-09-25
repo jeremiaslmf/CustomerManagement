@@ -1,7 +1,6 @@
 ﻿using CustomerManagement.Application.DTOs;
 using CustomerManagement.Application.Interfaces;
 using CustomerManagement.Infrastructure.CrossCuting.Extensions;
-using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -21,8 +20,7 @@ namespace CustomerManagement.Application.Services
         {
             var response = await _httpClient.GetAsync(string.Format(_uri, dto.Cep));
             var retornoJson = response.Content.ReadAsStringAsync().Result;
-            var endereco = JsonConvert.DeserializeObject<CepDTO.Retorno>(retornoJson);
-            //var endereco = JsonExtensions.Deserialize<CepDTO.Retorno>(retornoJson);
+            var endereco = JsonExtensions.Deserialize<CepDTO.Retorno>(retornoJson);
             return endereco;
         }
     }
