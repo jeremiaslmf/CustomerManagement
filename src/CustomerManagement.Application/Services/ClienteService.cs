@@ -28,9 +28,13 @@ namespace CustomerManagement.Application.Services
         public async Task Atualizar(ClienteDTO.Gravar dto)
         {
             var cliente = GetCliente(dto.Id);
-            var endereco = cliente.GetEndereco(dto.Id);
+            cliente.Editar(dto.Nome, dto.Sobrenome, dto.DataNascimento, 
+                GetCompatibilidadeSexo(dto.TipoSexo), dto.Email, dto.Telefone);
+            
+            var endereco = cliente.GetEndereco(dto.Endereco.Id);
             endereco.Editar(dto.Endereco.Logradouro, dto.Endereco.Numero, dto.Endereco.Complemento,
                 dto.Endereco.Bairro, dto.Endereco.CEP, dto.Endereco.Localidade, dto.Endereco.Uf);
+
             UnitOfWork.ClienteRepository.Update(cliente);
             await UnitOfWork.SaveChangesAsync();         
         }

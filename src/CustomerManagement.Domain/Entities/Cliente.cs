@@ -30,6 +30,17 @@ namespace CustomerManagement.Domain.Entities
             Telefone = telefone;
         }
 
+        public void Editar(string nome, string sobreNome, DateTime dataNascimento, TipoSexo tipoSexo,
+            string email, string telefone)
+        {
+            Nome = nome;
+            Sobrenome = sobreNome;
+            DataNascimento = dataNascimento;
+            TipoSexo = tipoSexo;
+            Email = email;
+            Telefone = telefone;
+        }
+
         protected Cliente() { }
 
         public void AdicionarEndereco(Endereco endereco)
@@ -40,7 +51,6 @@ namespace CustomerManagement.Domain.Entities
         }
 
         public Endereco GetEndereco(Guid id) => Enderecos.FirstOrDefault(x=> x.Id.Equals(id));
-
 
         public override bool IsValid()
         {

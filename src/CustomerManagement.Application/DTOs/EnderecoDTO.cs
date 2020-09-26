@@ -19,6 +19,7 @@ namespace CustomerManagement.Application.DTOs
 
         public class Dados
         {
+            public Guid Id { get; set; }
             public Guid ClienteId { get; set; }
             public string Logradouro { get; set; }
             public string Numero { get; set; }

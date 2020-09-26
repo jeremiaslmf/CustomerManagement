@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Endereco } from '../endereco';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PipeFormatDate } from 'src/app/app.component';
-import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -65,6 +64,7 @@ export class CadastroClienteComponent implements OnInit {
         );
     }
     else {
+      console.log(this.cliente);
       this.clienteService.update(this.cliente)
         .subscribe(
           () => {
