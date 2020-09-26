@@ -9,10 +9,9 @@ namespace CustomerManagement.Domain.Interfaces
     {
         void Add(TEntity obj);
         void Update(TEntity obj);
+        void Delete(TEntity entity);
         TEntity GetById(Guid id);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
-        void Delete(TEntity entity);
-        int SaveChanges();
     }
 }

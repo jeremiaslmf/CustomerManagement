@@ -39,12 +39,11 @@ namespace CustomerManagement.Infrastructure.Data.Mappings
                 .IsRequired();
 
             b.Property(c => c.Uf)
-                .HasColumnName("UF")
                 .HasColumnType("CHAR(2)")
                 .HasMaxLength(2)
                 .IsRequired();
 
-            b.HasOne<Cliente>(c => c.Cliente)
+            b.HasOne(c => c.Cliente)
                 .WithMany(e => e.Enderecos)
                 .HasForeignKey(c => c.ClienteId)
                 .OnDelete(DeleteBehavior.Cascade)

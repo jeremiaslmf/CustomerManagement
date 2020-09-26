@@ -18,6 +18,7 @@ namespace CustomerManagement.Application.Mappings
 
             TinyMapper.Bind<Endereco, EnderecoDTO.Retorno>();
             TinyMapper.Bind<EnderecoDTO.Retorno, Endereco>();
+            TinyMapper.Bind<EnderecoDTO.Dados, Endereco>();
             TinyMapper.Bind<List<EnderecoDTO.Retorno>, List<Endereco>>();
             TinyMapper.Bind<List<Endereco>, List<EnderecoDTO.Retorno>>();
         }

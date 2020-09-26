@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomerManagement.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(CMContext))]
-    [Migration("20200918181514_Initial")]
+    [Migration("20200925192430_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,9 +49,6 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Telefone")
-                        .HasName("idx_cliente_telefone");
 
                     b.ToTable("Clientes");
                 });
@@ -97,7 +94,6 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
 
                     b.Property<string>("Uf")
                         .IsRequired()
-                        .HasColumnName("UF")
                         .HasColumnType("CHAR(2)")
                         .HasMaxLength(2);
 

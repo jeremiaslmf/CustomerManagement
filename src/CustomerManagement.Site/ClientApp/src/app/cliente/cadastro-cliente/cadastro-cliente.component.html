@@ -1,6 +1,6 @@
 <h2>Cadastro de Cliente</h2>
 
-<form #clienteForm="ngForm">
+<form #clienteForm="ngForm" (submit)="salvarCadastro()">
     <div class="row">
         <div class="col-md-4 multi-horizontal">
             <div class="form-group">
@@ -52,9 +52,6 @@
         </div> 
     </div>
 
-</form>
-
-<form #ederecoForm="ngForm">
     <div class="row row-sm-offset">
         <div class="col-md-4 multi-horizontal">
             <div class="form-group">
@@ -110,13 +107,13 @@
 
     <span class="input-group-btn">
         <button type="submit" class="btn btn-success" 
-            (click)="salvarCadastro(cliente, endereco)" 
             [disabled]="!clienteForm.form.valid" 
             >Salvar
         </button>&nbsp;
-        <button type="button" class="btn btn-basic" 
+        <button type="button" class="btn btn-secondary" 
             [routerLink]="['/lista-cliente']"
             >Voltar
         </button>
     </span>
+
 </form>

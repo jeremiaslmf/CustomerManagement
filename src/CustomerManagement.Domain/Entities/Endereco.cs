@@ -2,7 +2,6 @@
 using Eventos.IO.Domain.Core.Models;
 using FluentValidation;
 using System;
-using System.Text.RegularExpressions;
 
 namespace CustomerManagement.Domain.Entities
 {
@@ -34,6 +33,19 @@ namespace CustomerManagement.Domain.Entities
 
         public Guid ClienteId { get; private set; }
         public virtual Cliente Cliente { get; private set; }
+
+
+        public void Editar(string logradouro, string numero, string complemento,
+            string bairro, string cep, string localidade, string ufEstado)
+        {
+            Logradouro = logradouro;
+            Numero = numero;
+            Complemento = complemento;
+            Bairro = bairro;
+            SetCep(cep);
+            Localidade = localidade;
+            Uf = ufEstado;
+        }
 
         public string SetCep(string cep)
             => CEP = cep.RemoveSpecialCharacters();

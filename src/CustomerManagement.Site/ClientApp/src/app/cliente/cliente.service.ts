@@ -18,10 +18,7 @@ export class ClienteService {
   protected apiCep: string = this.urlAPI + "api/cep/";
 
   create(cliente : Cliente) : Observable<Cliente> {
-    console.log("passou")
-    let retorno = this.http.post<Cliente>(this.apiCliente, cliente, httpOptions);
-    console.log(retorno);
-    return retorno; 
+    return this.http.post<Cliente>(this.apiCliente, cliente, httpOptions); 
   }
 
   update(cliente : Cliente) : Observable<Cliente> {

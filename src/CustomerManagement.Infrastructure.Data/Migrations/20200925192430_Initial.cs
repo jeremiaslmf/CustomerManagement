@@ -35,7 +35,7 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                     Bairro = table.Column<string>(maxLength: 150, nullable: false),
                     CEP = table.Column<string>(type: "CHAR(8)", maxLength: 8, nullable: false),
                     Localidade = table.Column<string>(maxLength: 50, nullable: false),
-                    UF = table.Column<string>(type: "CHAR(2)", maxLength: 2, nullable: false),
+                    Uf = table.Column<string>(type: "CHAR(2)", maxLength: 2, nullable: false),
                     ClienteId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -48,11 +48,6 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "idx_cliente_telefone",
-                table: "Clientes",
-                column: "Telefone");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Enderecos_ClienteId",

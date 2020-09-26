@@ -48,9 +48,6 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Telefone")
-                        .HasName("idx_cliente_telefone");
-
                     b.ToTable("Clientes");
                 });
 
@@ -95,7 +92,6 @@ namespace CustomerManagement.Infrastructure.Data.Migrations
 
                     b.Property<string>("Uf")
                         .IsRequired()
-                        .HasColumnName("UF")
                         .HasColumnType("CHAR(2)")
                         .HasMaxLength(2);
 

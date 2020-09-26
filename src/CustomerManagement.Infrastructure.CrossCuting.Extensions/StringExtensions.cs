@@ -15,5 +15,8 @@ namespace CustomerManagement.Infrastructure.CrossCuting.Extensions
 
 			return ret;
 		}
+
+		public static bool IsNullOrEmpty(this string entrada)
+		   => string.IsNullOrEmpty(entrada);
 	}
 }

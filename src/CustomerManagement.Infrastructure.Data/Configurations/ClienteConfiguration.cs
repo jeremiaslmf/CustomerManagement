@@ -18,7 +18,7 @@ namespace CustomerManagement.Infrastructure.Data.Mappings
                 .IsRequired();
 
             b.Property(c => c.Sobrenome)
-                 .HasMaxLength(100)
+                .HasMaxLength(100)
                 .IsRequired();
 
             b.Property(c => c.DataNascimento)
@@ -36,9 +36,6 @@ namespace CustomerManagement.Infrastructure.Data.Mappings
 
             b.Property(c => c.Telefone)
               .HasColumnType("CHAR(11)");
-
-            b.HasIndex(c => c.Telefone)
-                .HasName("idx_cliente_telefone");
 
             b.Ignore(e => e.ValidationResult);
             b.Ignore(e => e.CascadeMode);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Cliente } from '../cliente';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute } from '@angular/router';
@@ -50,6 +50,8 @@ export class CadastroClienteComponent implements OnInit {
   salvarCadastro(){
     this.cliente.endereco = this.endereco;
     this.cliente.dataNascimento = this.stringToDate(this.dataNascimento, "dd/MM/yyyy", "/");
+
+    console.log("pasosou");
     
     if (this.isCadastroNovo){
       this.clienteService.create(this.cliente)

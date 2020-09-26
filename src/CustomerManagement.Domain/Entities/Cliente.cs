@@ -1,8 +1,10 @@
 ﻿using CustomerManagement.Domain.Enums;
+using CustomerManagement.Infrastructure.CrossCuting.Extensions;
 using Eventos.IO.Domain.Core.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CustomerManagement.Domain.Entities
 {
@@ -16,7 +18,7 @@ namespace CustomerManagement.Domain.Entities
         public string Telefone { get; private set; }
         public virtual ICollection<Endereco> Enderecos { get; private set; } = new List<Endereco>();
 
-        public Cliente(string nome, string sobreNome, DateTime dataNascimento, TipoSexo tipoSexo, 
+        public Cliente(string nome, string sobreNome, DateTime dataNascimento, TipoSexo tipoSexo,
             string email, string telefone)
         {
             this.CreateGuid();
@@ -28,9 +30,17 @@ namespace CustomerManagement.Domain.Entities
             Telefone = telefone;
         }
 
-        public void AdicionarEndereco(Endereco endereco) => Enderecos.Add(endereco);
-
         protected Cliente() { }
+
+        public void AdicionarEndereco(Endereco endereco)
+        {
+            if (endereco == null || !endereco.IsValid())
+                return;
+            Enderecos.Add(endereco);
+        }
+
+        public Endereco GetEndereco(Guid id) => Enderecos.FirstOrDefault(x=> x.Id.Equals(id));
+
 
         public override bool IsValid()
         {

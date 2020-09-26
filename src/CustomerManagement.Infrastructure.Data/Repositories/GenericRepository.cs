@@ -24,16 +24,13 @@ namespace CustomerManagement.Infrastructure.Data.Repositories
 
         public void Update(TEntity obj) => DbSet.Update(obj);
 
-        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) 
-            => DbSet.AsNoTracking().Where(predicate);
+        public void Delete(TEntity entity) => Context.Remove(entity);
+
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => DbSet.AsNoTracking().Where(predicate);
 
         public virtual IEnumerable<TEntity> GetAll() => DbSet.ToList();
 
         public virtual TEntity GetById(Guid id) => DbSet.AsNoTracking().FirstOrDefault(x => x.Id == id);
-
-        public void Delete(TEntity entity) => Context.Remove(entity);
-
-        public int SaveChanges() => Context.SaveChanges();
 
         public void Dispose() => Context.Dispose();
     }

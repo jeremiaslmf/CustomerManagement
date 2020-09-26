@@ -1,7 +1,9 @@
 ﻿using CustomerManagement.Application.DTOs;
 using CustomerManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CustomerManagement.WebApi.Controllers
@@ -25,20 +27,28 @@ namespace CustomerManagement.WebApi.Controllers
                 return BadRequest();
 
             dto.Id = retorno.Id;
-            return CreatedAtRoute("Get", new { Id = retorno.Id }, dto);
+            dto.Endereco.ClienteId = retorno.Id;
+            return CreatedAtRoute("", new { retorno.Id }, dto);
         }
 
         [HttpPut]
         [Route("{Id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] ClienteDTO.Gravar dto)
         {
-            if (Guid.Empty.Equals(id))
+            if (!dto.Id.Equals(id) || Guid.Empty.Equals(id))
                 return BadRequest();
 
             if (!_clienteService.IsClienteExists(dto.Id))
                 return NotFound();
-            
-            await _clienteService.Atualizar(dto);
+
+            try
+            {
+                await _clienteService.Atualizar(dto);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
 
             return NoContent();
         }
@@ -54,23 +64,24 @@ namespace CustomerManagement.WebApi.Controllers
             return NoContent();
         }
 
+        //[HttpGet (Name = "Get")]
         [HttpGet]
         [Route("{Id}")]
-        public IActionResult Get([FromRoute] ClienteDTO.ObterPorId dto)
+        public ActionResult<ClienteDTO.Retorno> Get([FromRoute] ClienteDTO.ObterPorId dto)
         {
             var retorno = _clienteService.GetById(dto.Id);
             if (Guid.Empty.Equals(retorno.Id))
                 return NotFound();
-            return Ok(retorno);
+            return retorno;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public ActionResult<List<ClienteDTO.Retorno>> Get()
         {
             var retorno = _clienteService.GetAll();
             if (retorno.Count == 0)
                 return NotFound();
-            return Ok(retorno);
+            return retorno;
         }
     }
 }

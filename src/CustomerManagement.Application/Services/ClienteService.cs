@@ -27,9 +27,10 @@ namespace CustomerManagement.Application.Services
 
         public async Task Atualizar(ClienteDTO.Gravar dto)
         {
-            var cliente = UnitOfWork.ClienteRepository.GetById(dto.Id);
-            var endereco = UnitOfWork.EnderecoRepository.GetAllByClienteId(dto.Id).FirstOrDefault();
-            cliente.AdicionarEndereco(endereco);
+            var cliente = GetCliente(dto.Id);
+            var endereco = cliente.GetEndereco(dto.Id);
+            endereco.Editar(dto.Endereco.Logradouro, dto.Endereco.Numero, dto.Endereco.Complemento,
+                dto.Endereco.Bairro, dto.Endereco.CEP, dto.Endereco.Localidade, dto.Endereco.Uf);
             UnitOfWork.ClienteRepository.Update(cliente);
             await UnitOfWork.SaveChangesAsync();         
         }
@@ -44,9 +45,8 @@ namespace CustomerManagement.Application.Services
         public ClienteDTO.Retorno GetById(Guid id)
         {
             var cliente = GetCliente(id);
-            MapDatas();
             var clienteMap = TinyMapper.Map<ClienteDTO.Retorno>(cliente);
-            var enderecoMap = UnitOfWork.EnderecoRepository.GetAllByClienteId(id).FirstOrDefault();
+            var enderecoMap = cliente.Enderecos.FirstOrDefault();
             clienteMap.Endereco = TinyMapper.Map<EnderecoDTO.Retorno>(enderecoMap);
             return clienteMap;
         }
@@ -61,7 +61,7 @@ namespace CustomerManagement.Application.Services
             => UnitOfWork.ClienteRepository.GetById(id) != null;
 
         private Cliente GetCliente(Guid id)
-            => UnitOfWork.ClienteRepository.GetById(id)
+            => UnitOfWork.ClienteRepository.ObterClienteComEnderecoPorId(id)
                 ?? throw new Exception("Cliente não encontrado!");
 
         private TipoSexo GetCompatibilidadeSexo(string tipoSexo)
@@ -82,13 +82,6 @@ namespace CustomerManagement.Application.Services
                 endereco.CEP,
                 endereco.Localidade,
                 endereco.Uf));
-        }
-
-        private void MapDatas()
-        {
-            TinyMapper.Bind<Cliente, ClienteDTO.Retorno>();
-            TinyMapper.Bind<Endereco, EnderecoDTO.Retorno>();
-            TinyMapper.Bind<EnderecoDTO.Retorno, Endereco>();
         }
     }
 }

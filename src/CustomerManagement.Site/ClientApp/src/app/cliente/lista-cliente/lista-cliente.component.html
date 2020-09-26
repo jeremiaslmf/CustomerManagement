@@ -1,6 +1,9 @@
 
 <h2>Manutenção de clientes</h2>
-<button type="button" class="btn btn-primary" [routerLink]="['/cadastro-cliente']">Novo cadastro</button>
+<button type="button" class="btn btn-secondary" 
+  [routerLink]="['/cadastro-cliente']"
+  >Novo cadastro
+</button>
 <p *ngIf="!clientes"><em>carregando...</em></p>
 <p></p>
 
@@ -10,6 +13,7 @@
       <th>Nome</th>
       <th>E-mail</th>
       <th>Telefone</th>
+      <th>Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -18,8 +22,13 @@
       <td>{{ cliente.email }}</td>
       <td>{{ cliente.telefone | mask: '(00) 0000-0000'}}</td>
       <div>
-        <td><button type="button" class="btn btn-success" [routerLink]="['/cadastro-cliente', cliente.id]"><i class="fa fa-pencil"></i></button></td>
-        <td><button type="submit" class="btn btn-danger" (click)="excluirCliente(cliente.id)"><i class="fa fa-trash"></i></button></td>
+        <td><button type="button" class="btn btn-primary" 
+          [routerLink]="['/cadastro-cliente', cliente.id]">
+          <i class="fa fa-pencil"></i></button></td>
+
+        <td><button type="submit" class="btn btn-danger" 
+          (click)="excluirCliente(cliente.id)">
+          <i class="fa fa-trash"></i></button></td>
       </div>  
     </tr>
   </tbody>
